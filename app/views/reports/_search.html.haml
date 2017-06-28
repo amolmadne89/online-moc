@@ -1,0 +1,24 @@
+#adv-searchbox.box-body
+  = form_tag orders_reports_path, method: :get, class: "filter-search-menu" do
+    = hidden_field_tag 'type', "#{params["type"]}"
+    .col-md-12
+      .form-group
+        .col-md-5
+          .form-group
+            .input-group
+              .input-group-addon
+                %i.fa.fa-calendar
+                Display From
+              = text_field_tag :display_from, (params[:display_from] || (Date.today-1.month)), class: 'form-control nextcall pull-right'
+        .col-md-5
+          .form-group
+            .input-group
+              .input-group-addon
+                %i.fa.fa-calendar
+                Display Upto
+              = text_field_tag :display_upto, (params[:display_upto] || Date.today), class: 'form-control nextcall pull-right'
+        .col-md-2
+          .form-group
+            = button_tag type: "submit", class: "btn btn-primary btn-flatbtn" do
+              = fa_icon "search"
+              Search

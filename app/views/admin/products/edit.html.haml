@@ -1,0 +1,20 @@
+%section.content-header
+  %h1
+    %strong Edit Product
+  %ol.breadcrumb
+    %li
+      = link_to root_path do
+        = fa_icon 'dashboard'
+        Dashboard
+    %li
+      = link_to admin_products_path do
+        = fa_icon 'building'
+        Manage Products
+    %li.active Edit Product
+%section.content
+  .row
+    .col-md-12
+      .box-box-primary
+        .box-body
+          .box-body
+            = render partial: "form"

@@ -1,0 +1,114 @@
+%section.content-header
+  %h1
+    %strong Order Details
+  %ol.breadcrumb
+    %li
+      = link_to root_path do
+        = fa_icon 'dashboard'
+        Dashboard
+    %li
+      = link_to "#" do
+        = fa_icon 'building'
+        Manage Orders
+    %li.active Order Details
+%section.content
+  .row
+    .col-xs-12.col-sm-4.col-md-6
+      %h3{class: "text-center"}
+        Customer Info
+      .table-responsive
+        %table.table.table-project.table-project-broker
+          %tbody
+            %tr
+              %th Order ID
+              %td= @order.id
+            %tr
+              %th Customer Name
+              %td= @order.first_name
+            %tr
+              %th Email
+              %td= @order.email
+            %tr
+              %th Mobile
+              %td= @order.mobile
+
+            %tr
+              %th Address
+              %td= @order.address
+            %tr
+              %th City
+              %td= @order.city
+            %tr
+              %th State
+              %td= @order.state
+            %tr
+              %th Pincode
+              %td= @order.pincode
+    .col-xs-12.col-sm-4.col-md-6
+      %h3{class: "text-center"}
+        Delivery Details
+      .table-responsive
+        %table.table.table-project.table-project-broker
+          %tbody
+            %tr
+              %th Address
+              %td= @order.address
+            %tr
+              %th City
+              %td= @order.city
+            %tr
+              %th State
+              %td= @order.state
+            %tr
+              %th Pincode
+              %td= @order.pincode
+    .col-xs-12.col-sm-12.col-md-12
+      %h3{class: "text-center"}
+        Order Detail
+      .table-responsive
+        %table.table
+          %tbody
+            %tr
+              %th Product
+              %th Price
+              %th Quantity
+              %th Order Price
+          - @order.cart.line_items.each do |item|
+            - product = Product.find(item.item_id)
+            %tr
+              %td{:style => "width: 700px;"}
+                .media{:style => "border: none;\n    margin-bottom: 0px;\n    padding-bottom: 0;\n    margin-top: 5px;"}
+                  .media-left
+                    %img.media-object{:alt => "...", :src => "/assets/nav3.jpg", :width => "50"}/
+                  .media-body
+                    %h4.media-heading
+                      %a{:href => "", :style => "color: black; font-size:18px;"} #{product.product_name}
+                    %p{:style => "color: black;"} #{product.product_description}
+              %td
+                %i.fa.fa-inr
+                #{product.price}/-
+              %td=item.quantity
+              %td.item_price{:id => "item_price_#{item.id}"}
+                %i.fa.fa-inr
+                #{product.price * item.quantity}/-
+          %tr
+            %td{:style => "text-align:right;"}
+              Order Total
+            %td#total{:colspan => "4", :style => "font-size:16px;"}
+              %strong
+                %i.fa.fa-inr
+                #{@order.total_price}/-
+          %tr
+            %td{:style => "text-align:right;"}
+              Tax (0.0%)
+            %td{:colspan => "4", :style => "font-size:16px;"}
+              %strong
+                %i.fa.fa-inr
+                0.00/-
+          %tr
+            %td{:style => "text-align:right;"}
+              Total Payable
+            %td#total-pay{:colspan => "4", :style => "font-size:16px;"}
+              %strong
+                %i.fa.fa-inr
+                #{@order.total_price}/-

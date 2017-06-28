@@ -1,0 +1,184 @@
+- if session[:current_cart_id].present?
+  - @cart = Cart.find(session[:current_cart_id])
+  %section.menu
+    .container
+      .col-md-12.menu-holder{:style => " background: rgba(34, 2, 0, 0.89)"}
+        %h2{:style => "font-family: 'Raleway', sans-serif; padding-top:40px; font-size:24px;"} You Have #{@cart.line_items.count} Items in Shopping Cart
+        .table-responsive
+          %table.table.table-bordered.table-condensed
+            %thead
+              %tr
+                %th Order Details
+                %th{:width => "10%;"} Current price
+                %th{:width => "5%;"} Quantity
+                %th{:width => "10%;"} Price
+                %th{:width => "5%;"}
+            %tbody
+              - @cart.line_items.each do |item|
+                - product = Product.find(item.item_id)
+                %tr
+                  %td
+                    .media{:style => "border: none;\n    margin-bottom: 0px;\n    padding-bottom: 0;\n    margin-top: 5px;"}
+                      .media-left
+                        %img.media-object{:alt => "...", :src => "/assets/nav3.jpg", :width => "50"}/
+                      .media-body
+                        %h4.media-heading
+                          %a{:href => "", :style => "    color: #ffcc29; font-size:18px;"} #{product.product_name}
+                        %p #{product.product_description}
+                  %td
+                    %i.fa.fa-inr
+                    #{product.price}/-
+                  %td
+                    %input.qtyinput{:max => "99", :min => "1", :type => "number", :onchange => "getQuantity('#{item.id}')" , :id => "qty_#{item.id}", :value => item.quantity, :style => "    background-color: #1f0100;border-color: #1F0101;"}/
+                  %td.item_price{:id => "item_price_#{item.id}"}
+                    %i.fa.fa-inr
+                    #{product.price * item.quantity}/-
+                  %td
+                    %span.badge
+                      %a{:href => update_query_homes_path(:remove_item_id => item.id)}
+                        %i.fa.fa-close
+
+              %tr
+                %td{:style => "text-align:right;"}
+                  Order Total
+                %td#total{:colspan => "4", :style => "font-size:16px;"}
+                  %strong
+                    %i.fa.fa-inr
+                    #{@cart.line_items.sum(:item_price_with_quantity)}/-
+              %tr
+                %td{:style => "text-align:right;"}
+                  Tax (0.0%)
+                %td{:colspan => "4", :style => "font-size:16px;"}
+                  %strong
+                    %i.fa.fa-inr
+                    0.00/-
+              %tr
+                %td{:style => "text-align:right;"}
+                  Total Payable
+                %td#total-pay{:colspan => "4", :style => "font-size:16px;"}
+                  %strong
+                    %i.fa.fa-inr
+                    #{@cart.line_items.sum(:item_price_with_quantity)}/-
+        .col-md-12.col-sm-12
+          / Menu header
+          .menu-head{:style => "text-align:center; margin:auto;"}
+            %a.btn.btn-checkout.btn-lg{:href => root_path}
+              Continue with shopping
+            %a.btn.btn-order.btn-lg{"aria-controls" => "delivery", "aria-expanded" => "false", "data-toggle" => "collapse", :href => "#deliverye", :role => "button"}
+              Proceed to checkout
+          #deliverye.collapse
+            %h3 Delivery details
+            - if current_user.present? && (current_user.role.name == 'Admin' || current_user.role.name == 'Counter')
+              %input.reply_author_check{:type => "checkbox", :style => "margin-right:5px; margin-bottom:10px;"}
+                %label.branch #{Branch.find(current_user.branch_id).name} Order
+            = form_for Order.new do |f|
+              .row
+                .form-group.col-md-6
+                  %label Branch Name *
+                  - if current_user.present? && (current_user.role.name == 'Admin' || current_user.role.name == 'Counter')
+                    = f.select :branch_id, Branch.where(id: current_user.branch_id).collect {|t| [ t.name, t.id ] }, {}, class: 'form-control'
+                  - elsif current_user.present? && current_user.role.name == 'Customer'
+                    = f.select :branch_id, Branch.where(id: current_user.branch_id).collect {|t| [ t.name, t.id ] }, {}, class: 'form-control'
+                  - else
+                    = f.select :branch_id, Branch.all.collect {|b| [ b.name, b.id ] }, {include_blank: "Please Branch Name"}, class: 'form-control', required: true
+                - if current_user.present? && current_user.role.name == 'Customer'
+                  .form-group.col-md-6
+                    %label First Name *
+                    = f.text_field :first_name, :class => "form-control", :placeholder => "Type here..", required: true, :value=> current_user.first_name
+                  .form-group.col-md-6
+                    %label Last Name
+                    = f.text_field :last_name, :class => "form-control", :placeholder => "Type here.."
+                  .form-group.col-md-6
+                    %label Email *
+                    = f.text_field :email, :class => "form-control", :placeholder => "Type here..", required: true, :value=> current_user.email
+                  .form-group.col-md-6
+                    %label Mobile no *
+                    = f.text_field :mobile, :class => "form-control", :placeholder => "Type here..", required: true, :value=> current_user.mobile_number
+                  .form-group.col-md-6
+                    %label City *
+                    = f.text_field :city, :class => "form-control", :placeholder => "Type here..", required: true, :value=> current_user.orders.last.city
+                  .form-group.col-md-6
+                    %label State *
+                    = f.text_field :state, :class => "form-control", :placeholder => "Type here..", required: true, :value=> current_user.orders.last.state
+                  .form-group.col-md-6
+                    %label Pincode *
+                    = f.text_field :pincode, :class => "form-control", :placeholder => "Type here..", required: true, :value=> current_user.orders.last.pincode
+                  .form-group.col-md-6
+                    %label Address *
+                    = f.text_area :address, :class => "form-control", :placeholder => "Type here..", required: true, :value=> current_user.orders.last.address
+                - else
+                  .form-group.col-md-6
+                    %label First Name *
+                    = f.text_field :first_name, :class => "form-control", :placeholder => "Type here..", required: true, :id => "first_name"
+                  .form-group.col-md-6
+                    %label Last Name
+                    = f.text_field :last_name, :class => "form-control", :placeholder => "Type here.."
+                  .form-group.col-md-6
+                    %label Email *
+                    = f.text_field :email, :class => "form-control", :placeholder => "Type here..", required: true, :id => "email"
+                  .form-group.col-md-6
+                    %label Mobile no *
+                    = f.text_field :mobile, :class => "form-control", :placeholder => "Type here..", required: true, :id => "mobile"
+                  .form-group.col-md-6
+                    %label City *
+                    = f.text_field :city, :class => "form-control", :placeholder => "Type here..", required: true, :id => "city"
+                  .form-group.col-md-6
+                    %label State *
+                    = f.text_field :state, :class => "form-control", :placeholder => "Type here..", required: true, :id => "state"
+                  .form-group.col-md-6
+                    %label Pincode *
+                    = f.text_field :pincode, :class => "form-control", :placeholder => "Type here..", required: true, :id => "pincode"
+                  .form-group.col-md-6
+                    %label Address *
+                    = f.text_area :address, :class => "form-control", :placeholder => "Type here..", required: true, :id => "address"
+              %a
+
+                
+                = f.submit "Proceed to order", :class => "btn btn-checkout"
+          / Menu item details
+          / / Menu details end
+      .clearfix
+:javascript
+  function getQuantity(item_id){
+    quantity = $('#qty_'+item_id).attr('id');
+    var yourSelect = document.getElementById(quantity).value;
+    $.ajax({
+      type: 'GET',
+      url: '/homes/update_query',
+      dataType: 'json',
+      data: { qty : yourSelect, item_id : item_id },
+      success: function(data) {
+        $('#total').html(data[0].total);
+        $('#total-pay').html(data[0].total);
+        $('#item_price_'+ item_id).html(data[0].item_price);
+
+        // var parsed_data = JSON.parse(data);
+      }
+    });
+  }
+
+  $(".reply_author_check").click(function() {
+    debugger
+    if (this.checked) {
+        moc_add = $(this).next("label").text();
+        if(moc_add == "MOC City Mall Order"){
+          $("#first_name").val('MOC City Mall');
+          $("#email").val('admin_city_mall@moc.com');
+          $("#mobile").val('9999999999');
+          $("#city").val('Nashik');
+          $("#state").val('Maharashtra');
+          $("#address").val('City Mall Nashik');
+          $("#pincode").val('123456');
+        }else{
+          $("#first_name").val('MOC College Road');
+          $("#email").val('admin_college_road@moc.com');
+          $("#mobile").val('9999999999');
+          $("#city").val('Nashik');
+          $("#state").val('Maharashtra');
+          $("#address").val('College Road Nashik');
+          $("#pincode").val('123456');
+        }
+    } else {
+        $(".form-control").val("");
+    }
+  });

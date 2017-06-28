@@ -1,0 +1,50 @@
+.aboutcompanypadd
+  .aboutusheading
+    About Our
+    %span.lblue Restaurant
+  .container
+    .row
+      .col-md-6
+        / About Compnay Item
+        .aboutcompanyitem
+          / About Company Image
+          %img{:alt => "", :src => "assets/about-1.jpg", :class => 'imgthumbnail'}/
+      .col-md-6
+        / About Compnay Item
+        .aboutcompanyitem
+          / Paragraph
+          %p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut alio consequat.
+
+          %p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut alio consequat.
+          %p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut alio consequat.
+
+:css
+  .container{    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;}
+  .aboutcompanyitem{max-width: 600px;
+      margin: 0 auto;
+      margin-top: 10px;}
+  .imgthumbnail{padding: 4px;
+      line-height: 1.42857143;
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 2px;
+      -webkit-transition: all .2s ease-in-out;
+      -o-transition: all .2s ease-in-out;
+      transition: all .2s ease-in-out;
+      display: inline-block;
+      max-width: 100%;
+      height: auto;}
+
+  p {font-size: 20px;
+      line-height: 32px;
+      font-weight: 300;
+      color: #9a9a9a;}
+  .aboutcompanypadd{background-color: white;}
+  .lblue{color: #a20303;font-weight: 700;}
+  .aboutusheading{font-size: 35px;
+    margin-left: 129px;
+    margin-bottom: 64px;
+    font-weight: 400;}

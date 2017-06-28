@@ -1,0 +1,54 @@
+%body
+  %header.main-header
+    = link_to root_path, class: 'logo' do
+      %span.logo-mini
+        = image_tag "/assets/mocf01.png", class: "img-responsive"
+      %span.logo-lg
+        = image_tag "/assets/moc_logo50.png", class: "img-responsive"
+    %nav.navbar.navbar-static-top{:role => "navigation"}
+      %a.sidebar-toggle{"data-toggle" => "offcanvas", :href => "#", :role => "button"}
+        %span.sr-only Toggle navigation
+      .navbar-custom-menu
+        %ul.nav.navbar-nav
+          %li.dropdown.notifications-menu
+            %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+              %i.fa.fa-bell-o
+              %span.label.label-warning 10
+            %ul.dropdown-menu
+              %li.header You have 10 notifications
+              %li
+                %ul.menu
+                  %li
+                    %a{:href => "#"}
+                      %i.fa.fa-users.text-aqua
+                      5 new members joined today
+              %li.footer
+                %a{:href => "#"} View all
+          %li.dropdown.user.user-menu
+            %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+              -# if current_user.image.present?
+                = image_tag "#{current_user.image.url}", class: "user-image", alt: "User Image"
+              -# else
+              = image_tag "blank_user.jpg", class: "user-image", alt: "User Image"
+              %span.hidden-xs
+                = current_user.first_name
+            %ul.dropdown-menu
+              %li.user-header
+                -# if current_user.image.present?
+                  = image_tag "#{current_user.image.url}", class: "user-image", alt: "User Image"
+                -# else
+                = image_tag "blank_user.jpg", class: "user-image", alt: "User Image"
+                %p
+                  = current_user.first_name
+                  %br
+                  = current_user.role.name
+                  %small
+                    = current_user.email
+              %li.user-footer
+                .pull-left
+                  %a.btn.btn-default.btn-flat{:href => "#{}"}
+                    Edit Profile
+                .pull-right
+                  = link_to destroy_user_session_path, class: "btn btn-default", method: :delete do
+                    Logout
+                    = fa_icon 'sign-out'

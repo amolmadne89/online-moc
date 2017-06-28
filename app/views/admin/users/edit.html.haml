@@ -1,0 +1,20 @@
+%section.content-header
+  %h1
+    %strong Edit User
+  %ol.breadcrumb
+    %li
+      = link_to root_path do
+        = fa_icon 'dashboard'
+        Dashboard
+    %li
+      = link_to "#" do
+        = fa_icon 'building'
+        Manage Users
+    %li.active Edit User
+%section.content
+  .row
+    .col-md-12
+      .box-box-primary
+        .box-body
+          .box-body
+            = render partial: "form"

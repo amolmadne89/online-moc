@@ -1,0 +1,48 @@
+%section.content-header
+  %h1
+    %strong Manage Categories
+  %ol.breadcrumb
+    %li
+      = link_to root_path do
+        = fa_icon 'dashboard'
+        Dashboard
+    %li.active Manage Categories
+%section.content
+  .row
+    .col-md-12
+      .box.box-primary
+        .box-header
+          .col-md-10
+
+          .col-md-2
+            .form-group
+              = link_to new_admin_category_path, class: "btn btn-success btn-flat" do
+                = fa_icon "plus"
+                  New Category
+        .box-body
+          .table-responsive
+            %table.table.table-bordered.table-condensed.table-striped
+              %thead
+                %tr
+                  %th Category Name
+                  %th Category Code
+                  %th Category Image
+                  %th Created Date
+                  %th Status
+                  %th Actions
+              %tbody
+                - @categories.each do |category|
+                  %tr
+                    %td
+                      %strong
+                        = link_to category.category_name, admin_category_path(category)
+                    %td= category.category_code
+                    %td= image_tag Photo.find_by_imageable_id(category.id).image.url(:thumb) rescue nil
+                    %td= category.created_at.strftime("%d %B %Y : %I.%M %p")
+                    %td= category.status
+                    %td
+                      = link_to edit_admin_category_path(category), class: "btn btn-primary m-r-5",
+                        style: "padding: 0px; width: 20px;" do
+                        = fa_icon "pencil"
+                      = link_to admin_category_path(category), class: "btn btn-danger", method: :delete, data: {:confirm => "Would you like to permanently delete this category?", "commit-class" => "btn btn-success", "cancel-class" => "btn btn-danger"}, style: "padding: 0px; width: 20px;" do
+                        = fa_icon "trash-o"

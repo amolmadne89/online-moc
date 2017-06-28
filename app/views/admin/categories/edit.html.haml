@@ -1,0 +1,20 @@
+%section.content-header
+  %h1
+    %strong Edit Category
+  %ol.breadcrumb
+    %li
+      = link_to root_path do
+        = fa_icon 'dashboard'
+        Dashboard
+    %li
+      = link_to admin_categories_path do
+        = fa_icon 'building'
+        Manage Categories
+    %li.active Edit Category
+%section.content
+  .row
+    .col-md-12
+      .box-box-primary
+        .box-body
+          .box-body
+            = render partial: "form"

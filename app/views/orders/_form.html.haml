@@ -1,0 +1,7 @@
+.save_button.mdl-card
+  = form_for @order do |f|
+    .mdl-grid.mdl-card.mdl-shadow--1dp.p-b-15, "Product Name *"
+      .mdl-cell--12-col.mdl-cell--12-col-tablet.ml-color--shades-white.m-8
+        %h4.heading-border.p-t-10.m-b-15
+          Category Information
+      = f.text_field :first_name

@@ -1,0 +1,52 @@
+%section.content-header
+  %h1
+    %strong Category Details
+  %ol.breadcrumb
+    %li
+      = link_to root_path do
+        = fa_icon 'dashboard'
+        Dashboard
+    %li
+      = link_to admin_categories_path do
+        = fa_icon 'building'
+        Manage Category
+    %li.active Category Details
+%section.content
+  .row
+  .box-default
+    .col-xs-12.col-sm-4.col-md-6
+      .table-responsive
+        %table.table.table-project
+          %tbody
+            %tr
+              %th Category Name
+              %td= @category.category_name
+            %tr
+              %th Category Code
+              %td= @category.category_code
+            %tr
+              %th Status
+              %td= (@category.status? ? "Active" : "Inactive")
+            %tr
+              %th Created Date
+              %td= @category.created_at.strftime('%v')
+    .clearfix
+  .row
+    .col-md-12
+      .form-group
+        %label
+          %h4
+            %strong Category Images
+        #building.timeline-body.row.my-gallery
+          - @category.photos.each do |category_image|
+            %a.close-app.thumbimage{:href => "#", :rel => "lightbox[roadtrip]", :title => "#{category_image.image_file_name}"}
+              = image_tag Photo.find(category_image.id).image.url(:thumb), :class => 'img-responsive'
+              =# label_tag :image_name, category_image.image_name, class: "control-label"
+  .row
+    .col-xs-12.col-sm-4.col-md-4
+      = link_to edit_admin_category_path(@category), class: "btn btn-success" do
+        = fa_icon "pencil"
+        Edit Category
+      = link_to admin_categories_path, class: "btn btn-danger" do
+        = fa_icon "arrow-left"
+        Go Back

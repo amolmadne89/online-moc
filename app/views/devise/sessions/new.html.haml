@@ -1,0 +1,43 @@
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title MOC Nashik
+    = favicon_link_tag 'small-logo.png'
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  %body.hold-transition.login-page
+    = bootstrap_flash
+    .login-box
+      .login-logo
+        = link_to root_path do
+          = image_tag "moc_logo.png"
+      .login-box-body
+        = form_for(User.new, :id => 'new_user', :class => 'new_user', url: session_path(User.new)) do |f|
+          .form-group.has-feedback
+            = f.email_field :email, autofocus: true, class: 'form-control',
+              placeholder: 'somename@domain.com'
+            %span.glyphicon.glyphicon-envelope.form-control-feedback
+          .form-group.has-feedback  
+            = f.select :branch_id, Branch.all.collect {|b| [ b.name, b.id ] }, {include_blank: "Branch Name"}, class: 'form-control', required: true
+          .form-group.has-feedback
+            = f.password_field :password, autocomplete: 'off', class: 'form-control',
+                placeholder: '••••••••'
+            %span.glyphicon.glyphicon-lock.form-control-feedback
+          - if devise_mapping.rememberable?
+            .row
+              .col-xs-8
+                .checkbox.icheck{:style => "margin-left:20px;"}
+                  %label
+                    = f.check_box :remember_me
+                      Remember Me
+              .col-xs-4
+                %button.btn.btn-primary.btn-block.btn-flat{:type => "submit"} Login
+        %a{"data-target" => "#resetpass", "data-toggle" => "modal", :style => "cursor:pointer;"} I forgot my password
+        %br/
+    %footer.main-footer{style: "color: #000"}
+      %strong
+        Copyright © 2016
+        = succeed "." do
+          %a{:href => "#"} MON Nashik
+      All rights reserved.

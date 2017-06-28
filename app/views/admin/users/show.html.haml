@@ -1,0 +1,41 @@
+%section.content-header
+  %h1
+    %strong User Details
+  %ol.breadcrumb
+    %li
+      = link_to root_path do
+        = fa_icon 'dashboard'
+        Dashboard
+    %li
+      = link_to admin_users_path do
+        = fa_icon 'building'
+        Manage User
+    %li.active User Details
+%section.content
+  .row
+  .box-default
+    .col-xs-12.col-sm-4.col-md-6
+      .table-responsive
+        %table.table.table-project
+          %tbody
+            %tr
+              %th Name
+              %td= @user.first_name
+            %tr
+              %th Email
+              %td= @user.email
+            %tr
+              %th Mobile
+              %td= @user.mobile_number
+            %tr
+              %th Created Date
+              %td= @user.created_at.strftime('%v')
+    .clearfix
+  .row
+    .col-xs-12.col-sm-4.col-md-4
+      = link_to edit_admin_user_path(@user), class: "btn btn-success" do
+        = fa_icon "pencil"
+        Edit User
+      = link_to admin_users_path, class: "btn btn-danger" do
+        = fa_icon "arrow-left"
+        Go Back

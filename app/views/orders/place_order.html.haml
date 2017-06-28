@@ -1,0 +1,83 @@
+%section.menu
+  .container
+    .col-md-12.menu-holder{:style => " background: rgba(34, 2, 0, 0.89)"}
+      %h2{:style => "font-family: 'Raleway', sans-serif; padding-top:40px; font-size:24px;"} Review your order
+      .table-responsive
+        %table.table.table-condensed
+          %thead
+            %tr
+              %th Shipping Address
+              %th Payment Type
+          %tbody
+            %tr
+              %td
+                #{@order.first_name} #{@order.last_name}
+                %br
+                = @order.address
+                %br
+                #{@order.city}, #{@order.state} #{@order.pincode}
+                %br
+                = @order.mobile
+              %td
+                Cash on delivery
+        %table.table.table-bordered.table-condensed
+          %thead
+            %tr
+              %th Order Details
+              %th{:width => "10%;"} Current price
+              %th{:width => "5%;"} Quantity
+              %th{:width => "10%;"} Price
+              %th{:width => "5%;"}
+          %tbody
+            - @order.cart.line_items.each do |item|
+              - product = Product.find(item.item_id)
+              %tr
+                %td
+                  .media{:style => "border: none;\n    margin-bottom: 0px;\n    padding-bottom: 0;\n    margin-top: 5px;"}
+                    .media-left
+                      %img.media-object{:alt => "...", :src => "/assets/nav3.jpg", :width => "50"}/
+                    .media-body
+                      %h4.media-heading
+                        %a{:href => "", :style => "    color: #ffcc29; font-size:18px;"} #{product.product_name}
+                      %p #{product.product_description}
+                %td
+                  %i.fa.fa-inr
+                  #{product.price}/-
+                %td= item.quantity
+                %td.item_price{:id => "item_price_#{item.id}"}
+                  %i.fa.fa-inr
+                  #{product.price * item.quantity}/-
+                %td
+                  %span.badge
+                    %a{:href => update_query_homes_path(:remove_item_id => item.id)}
+                      %i.fa.fa-close
+
+            %tr
+              %td{:style => "text-align:right;"}
+                Order Total
+              %td#total{:colspan => "4", :style => "font-size:16px;"}
+                %strong
+                  %i.fa.fa-inr
+                  #{@order.cart.line_items.sum(:item_price_with_quantity)}/-
+            %tr
+              %td{:style => "text-align:right;"}
+                Tax (0.0%)
+              %td{:colspan => "4", :style => "font-size:16px;"}
+                %strong
+                  %i.fa.fa-inr
+                  0.00/-
+            %tr
+              %td{:style => "text-align:right;"}
+                Total Payable
+              %td#total-pay{:colspan => "4", :style => "font-size:16px;"}
+                %strong
+                  %i.fa.fa-inr
+                  #{@order.cart.line_items.sum(:item_price_with_quantity)}/-
+      .col-md-12.col-sm-12
+        / Menu header
+        .menu-head{:style => "text-align:center; margin:auto;"}
+          / %a.btn.btn-checkout.btn-lg{:href => "payment.html"}
+          /   Pick Up
+          %a.btn.btn-order.btn-lg{:href => thanks_page_order_path(@order), :role => "button"}
+            Place Order
+    .clearfix

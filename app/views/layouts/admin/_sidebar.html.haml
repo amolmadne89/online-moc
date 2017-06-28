@@ -1,0 +1,39 @@
+%aside.main-sidebar
+  %section.sidebar
+    .user-panel
+      .pull-left.image
+        = image_tag "blank_user.jpg", class: "user-image", alt: "User Image"
+      .pull-left.info
+        %p
+          = current_user.first_name
+          %br
+          = current_user.role.name
+    %ul.sidebar-menu
+      %li.header MENU
+      %li
+        = link_to admin_users_path do
+          = fa_icon 'users'
+          %span Manage Users
+      %li
+        = link_to admin_categories_path do
+          = fa_icon 'users'
+          %span Manage Categories
+      %li
+        = link_to admin_products_path do
+          = fa_icon 'users'
+          %span Manage Products
+      %li
+        = link_to admin_orders_path do
+          = fa_icon 'users'
+          %span Manage Orders
+      %li.treeview
+        %a{:href => "#"}
+          %i.fa.fa-list-alt
+          %span Reports
+          %span.pull-right-container
+            %i.fa.fa-angle-left.pull-right
+        %ul.treeview-menu
+          %li
+            %a{:href => orders_reports_path}
+              %i.fa.fa-circle-o
+              Orders

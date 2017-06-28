@@ -1,0 +1,16 @@
+.signupPopup
+  %a.closeThanks{:href => "javascript:void(0)"} X
+  = form_for(User.new, :id => 'new_user', :class => 'new_user', url: registration_path(User.new)) do |f|
+    = f.text_field :first_name, :placeholder => 'First Name', :class => 'inputstyle'
+    = f.text_field :last_name, :placeholder => 'Last Name', :class => 'inputstyle'
+    = f.text_field :mobile_number, :placeholder => 'Mobile Number', :class => 'inputstyle'
+    = f.email_field :email, :placeholder => 'Username / Email Id', :class => 'inputstyle'
+    = f.password_field :password, autocomplete: "off", :placeholder => "Password", :class => 'inputstyle'
+    = f.password_field :password_confirmation, autocomplete: "off", :placeholder => "Password Confirmation", :class => 'inputstyle'
+    = f.hidden_field :role, :value => 'user'
+    #signupError
+    %input.LoginButton{:type => "submit", :value => "REGISTER"}
+    %p.accountText
+      Already Registered?
+      %a.openLoginPopup{:href => "javascript:void(0);"} Sign In
+    .clear

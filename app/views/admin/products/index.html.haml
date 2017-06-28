@@ -1,0 +1,52 @@
+%section.content-header
+  %h1
+    %strong Manage Products
+  %ol.breadcrumb
+    %li
+      = link_to root_path do
+        = fa_icon 'dashboard'
+        Dashboard
+    %li.active Manage Products
+%section.content
+  .row
+    .col-md-12
+      .box.box-primary
+        .box-header
+          .col-md-10
+
+          .col-md-2
+            .form-group
+              = link_to new_admin_product_path, class: "btn btn-success btn-flat" do
+                = fa_icon "plus"
+                  New Product
+        .box-body
+          .table-responsive
+            %table.table.table-bordered.table-condensed.table-striped
+              %thead
+                %tr
+                  %th Product Name
+                  %th Product Code
+                  %th Category
+                  %th Price
+                  %th Image
+                  %th Created Date
+                  %th Status
+                  %th Actions
+              %tbody
+                - @products.each do |product|
+                  %tr
+                    %td
+                      %strong
+                        = link_to product.product_name, admin_product_path(product)
+                    %td= product.product_code
+                    %td= product.category.category_name rescue nil
+                    %td= product.price
+                    %td= image_tag Photo.find_by_imageable_id(product.id).image.url(:thumb) rescue nil
+                    %td= product.created_at.strftime("%d %B %Y : %I.%M %p")
+                    %td= product.status
+                    %td
+                      = link_to edit_admin_product_path(product), class: "btn btn-primary m-r-5",
+                        style: "padding: 0px; width: 20px;" do
+                        = fa_icon "pencil"
+                      = link_to admin_product_path(product), class: "btn btn-danger", method: :delete, data: {:confirm => "Would you like to permanently delete this products?", "commit-class" => "btn btn-success", "cancel-class" => "btn btn-danger"}, style: "padding: 0px; width: 20px;" do
+                        = fa_icon "trash-o"

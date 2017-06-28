@@ -1,0 +1,275 @@
+/**/
+
+
+/*Amol CSS For New Desigen*/
+
+@charset "UTF-8";
+
+/* CSS Document */
+
+body {
+    font-family: 'Raleway', sans-serif;
+    color: #2d3035;
+    background: #FFF;
+}
+
+ul.dropdown-menu.cart-menu {
+    min-width: 220px;
+    padding: 10px;
+}
+
+.media-heading {
+    font-size: 14px;
+}
+
+.media {
+    border-bottom: 1px solid #8a0707;
+    padding-bottom: 7px;
+    margin: 7px 0;
+}
+
+.navbar-default {
+    background-color: #ffcc29;
+    border: none;
+    border-radius: 0;
+}
+
+.navbar-default .navbar-nav>.active>a,
+.navbar-default .navbar-nav>.active>a:focus,
+.navbar-default .navbar-nav>.active>a:hover {
+    color: #fff;
+    background-color: #a20303;
+}
+
+.navbar-default .navbar-nav>li>a {
+    color: #920606;
+}
+
+.banner {
+    background: url(../assets/banner.jpg) no-repeat center;
+    height: 400px;
+    background-size: cover;
+}
+
+section {
+    padding: 40px 0;
+}
+
+section h2 {
+    font-weight: 400;
+    font-family: 'Engagement', cursive;
+    font-size: 48px
+}
+
+.lead {
+    font-size: 18px;
+}
+
+.mrgn-30-top-btm {
+    margin: 30px 0;
+}
+
+.navbar-default .navbar-nav>.open>a,
+.navbar-default .navbar-nav>.open>a:focus,
+.navbar-default .navbar-nav>.open>a:hover {
+    color: #fff;
+    background-color: #a20303;
+}
+
+.dropdown-menu {
+    background-color: #a20303;
+}
+
+.dropdown-menu>li>a {
+    color: #fff;
+}
+
+.dropdown-menu a {
+    color: #ffcc29;
+    text-decoration: none;
+}
+
+.media-body {
+    color: #fff;
+}
+
+.badge {
+    background-color: #fff;
+    padding: 1px 5px 4px;
+    color: #a20303;
+}
+
+.btn-checkout {
+    background: #ffcc29;
+    color: #a20303!important;
+}
+
+.menu {
+    background: url(../assets/bg-menu.jpg) center fixed;
+    background-size: cover;
+    padding: 0
+}
+
+.menu-holder {
+    padding: 60px 20px;
+    background: rgba(28, 0, 3, 0.7);
+    color: #fff;
+}
+
+.menu-details a {
+    color: #ffcc29;
+}
+
+.menu-details {
+    padding-bottom: 1px;
+    border-bottom: 1px solid #827877;
+    margin-bottom: 6px;
+}
+
+footer {
+    background: #a20303;
+    color: #dcdcdc;
+    padding: 15px 0 5px;
+}
+
+footer a {
+    color: #ffcc29;
+}
+
+.contact-wrap {
+    padding-top: 40px;
+}
+
+.contact-wrap .lead {
+    font-size: 14px;
+}
+
+.modal-body {
+    padding: 15px;
+    background: #a20303;
+    color: #fff;
+}
+
+.modal-header {
+    padding: 15px;
+    border-bottom: 1px solid #ffcc29;
+    background: #a20303;
+    color: #ffcc29;
+}
+
+label {
+    font-weight: 500;
+}
+
+.veg {
+    background: #4CAF50;
+    padding: 4px 10px 1px;
+    display: table;
+    border-radius: 4px;
+}
+
+.non-veg {
+    background: #F44336;
+    padding: 4px 10px 1px;
+    display: table;
+    border-radius: 4px;
+}
+
+p.price {
+    font-size: 24px;
+    font-weight: bold;
+    display: table;
+}
+
+select.form-control.qty {
+    /* display: table; */
+    /* margin: auto; */
+    width: 40px;
+    float: right;
+}
+
+.btn-order {
+    background: #a20303;
+    color: #ffcc29!important;
+}
+
+.navbar-brand {
+    padding: 0 15px;
+}
+
+.modal-footer {
+    padding: 15px;
+    text-align: right;
+    border-top: 1px solid #7d0303;
+    background: #7d0303;
+    color: #fff;
+}
+
+.table-bordered>thead>tr>td,
+.table-bordered>thead>tr>th {
+    border-bottom-width: 2px;
+    /*background: #a20303;*/
+}
+
+div#delivery {
+    width: 80%;
+    margin: auto;
+    background: #a20303;
+    padding: 10px 30px;
+    margin-top: 10px;
+    border-radius: 4px;
+    /* box-shadow: 0px 0px 10px 0 #020001; */
+    border: 1px solid #F44336;
+}
+
+div#delivery .form-control {
+    color: #fff;
+    background-color: transparent;
+    background-image: none;
+    border: 1px solid #650303;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+}
+
+.container-fluids {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    background-color: #ffce29;
+}
+
+div#delivery .form-control:hover {}
+
+.grid {
+    min-height: 400px;
+    padding: 15px;
+    border-radius: 4px;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+.grid:hover {
+    background: #fff;
+    color: #000;
+}
+
+.img-thumbnail {
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+.grid:hover .img-thumbnail {
+    padding: 0;
+}
+
+.crosshair {
+    cursor: crosshair;
+}

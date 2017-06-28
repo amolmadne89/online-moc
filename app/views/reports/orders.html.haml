@@ -1,0 +1,46 @@
+%section.content-header
+  %h1
+    %strong Manage Orders Reports
+  %ol.breadcrumb
+    %li
+      = link_to root_path do
+        = fa_icon 'dashboard'
+        Dashboard
+    %li.active Manage Orders Reports
+%section.content
+  .row
+    .col-md-12
+      .box.box-primary
+        .box-header
+        = render partial: "search"
+        %h3
+          Total Sale :
+          %span
+            %i.fa.fa-inr>
+              #{@total}/-
+        .box-body
+          .table-responsive
+            %table.table.table-bordered.table-condensed.table-striped.tablesorter
+              %thead
+                %tr
+                  %th Order No
+                  %th Date
+                  %th Name
+                  %th Email
+                  %th Contact No.
+                  %th City
+                  %th Amount
+                  %th Status
+              %tbody
+                - @orders.each do |order|
+                  %tr
+                    %td
+                      %strong
+                        = link_to order.id, admin_order_path(order)
+                    %td= order.created_at.strftime("%d %B %Y : %I.%M %p")
+                    %td= order.first_name
+                    %td= order.email
+                    %td= order.mobile
+                    %td= order.city
+                    %td= order.total_price
+                    %td= order.order_status

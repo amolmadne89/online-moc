@@ -1,0 +1,39 @@
+= form_for [:admin, @user] do |f|
+  - if @user.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@user.errors.count, "error")
+        prohibited this transaction type from being saved:
+      %ul
+        - @user.errors.full_messages.each do |message|
+          %li= message
+  .col-md-6
+    .form-group
+      = f.text_field :first_name, class: "form-control", placeholder: "Name", required: true
+  .col-md-6
+    .form-group
+      = f.email_field :email, class: "form-control", placeholder: "Email", required: true
+  .col-md-6
+    .form-group
+      = f.password_field :password, class: 'form-control', placeholder: "Password", required: true
+  .col-md-6
+    .form-group
+      = f.text_field :mobile_number, class: "form-control", placeholder: "Mobile Number", required: true
+  .col-md-6
+    .form-group
+      = f.select :role_id, Role.all.collect {|r| [ r.name, r.id ] }, {include_blank: "Role"}, class: 'form-control', required: true
+  .col-md-6
+    .form-group
+      = f.select :role_id, Branch.all.collect {|r| [ r.name, r.id ] }, {include_blank: "Branch Name"}, class: 'form-control', required: true
+  / .col-md-6
+  /   .form-group
+  /     = f.password_field :password_confirmation, class: 'form-control', placeholder: "Confirm Password"
+  %div{align: "center"}
+    .col-md-12
+      .form-group
+        = button_tag type: "submit", class: "btn btn-primary", data: {disable_with: "Please Wait..."} do
+          = fa_icon "floppy-o"
+          Save
+        = link_to :back, class: "btn btn-danger" do
+          = fa_icon "close"
+          Cancel

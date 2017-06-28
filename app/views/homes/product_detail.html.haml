@@ -1,0 +1,52 @@
+%link{:href => "js/fancybox/jquery.fancybox.css", :media => "screen", :rel => "stylesheet", :type => "text/css"}/
+
+%section.menu
+  %div
+    .col-md-9.menu-holder
+      %h2.text-center
+      .col-md-12
+        .row
+          .col-md-5
+            .menu-head
+              %a.fancybox{:href => "/assets/burger.jpg", :rel => "food_gallery"}
+                %img.menu-img.img-responsive.img-thumbnail.crosshair{:alt => "", :src => "/assets/burger.jpg"}/
+              %a.fancybox.hidden{:href => "/assets/burger.jpg", :rel => "food_gallery"}
+          .col-md-7
+            %h3 #{@product.category.category_name}
+            %h4 #{@product.product_name}
+            %p.small #{@product.product_description}
+            %p.price
+              %i.fa.fa-inr>
+                #{@product.price}/-
+            .menu-details
+              %a.btn.btn-order.pull-right{:href => cart_path(:product=>@product.id)}
+                %i.fa.fa-shopping-basket{"aria-hidden" => "true"}
+                  Buy Now
+        %p.small Food BigFood Big Description... lorem ipsum tesxt,  lorem ipsum tesxt, lorem ipsum tesxt, lorem ipsum tesxt, lorem ipsum tesxt, lorem ipsum tesxt,  lorem ipsum  lorem ipsum tesxt,  lorem ipsum tesxt, lorem ipsum tesxt, lorem ipsum tesxt, lorem ipsum tesxt, lorem ipsum tesxt,  lorem ipsum tesxtFood Big Description... lorem ipsum tesxt,  lorem ipsum tesxt, lorem ipsum tesxt, lorem ipsum tesxt, lorem ipsum tesxt, lorem ipsum tesxt,  lorem ipsum tesxt Description... lorem ipsum tesxt,  lorem ipsum tesxt, lorem ipsum tesxt, lorem ipsum tesxt, lorem ipsum tesxt, lorem ipsum tesxt.
+        - @product.category.products.each do |p|
+          .col-md-4.col-sm-4.grid
+            / Menu header
+            .menu-head
+              %a.btn.btn-checkout{:href => product_detail_home_path(p.id)}
+                %img.menu-img.img-responsive.img-thumbnail{:alt => "", :src => "/assets/burger.jpg"}/
+              %h3.text-limit-head #{p.product_name}
+              %p.small.text-limit-desc #{p.product_description}
+              / %select.form-control.qty
+              /   %option 1
+              /   %option 2
+              /   %option 30
+              %p.price
+                %i.fa.fa-inr>
+                #{p.price}/-
+            / Menu item details
+            .menu-details.menu-detailss
+              / Menu list
+              %a.btn.btn-checkout{:href => cart_path(:product=>p.id, :add_to_cart => true)}
+                %i.fa.fa-plus>
+                  Add to cart
+              %a.btn.btn-order.pull-right{:href => cart_path(:product=>p.id)}
+                %i.fa.fa-shopping-basket{"aria-hidden" => "true"}
+                  Order Now
+  .clearfix
+  %script{:src => "js/fancybox/jquery.fancybox.pack.js"}
+
