@@ -7,7 +7,7 @@
 default: &default
   adapter: postgresql
   host: localhost
-  username: postgres
+  username: moc
   password: postgres
   pool: 5
   timeout: 5000
