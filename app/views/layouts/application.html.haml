@@ -4,8 +4,8 @@
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %title Nashik MOC
     = favicon_link_tag 'mocf01.png'
-    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => false
-    = javascript_include_tag 'application', 'data-turbolinks-track' => false
+    = stylesheet_link_tag    'application', media: 'all'
+    = javascript_include_tag 'application', media: 'all'
     = csrf_meta_tags
   %body
     = render 'layouts/header'
