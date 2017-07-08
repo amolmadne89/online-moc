@@ -43,8 +43,8 @@
               - else
                 = link_to 'Logout', destroy_user_session_path, :method => :delete
             - else
-              %a{"data-target" => "#login", "data-toggle" => "modal", :href => "#"} Login
-              =# link_to 'Login', new_user_session_path
+              //%a{"data-target" => "#login", "data-toggle" => "modal", :href => "#"} Login
+              = link_to 'Login', new_user_session_path
           %li.dropdown.mega-dropdown
             - if session[:current_cart_id].present?
               %a.dropdown-toggle{:href => "javascript:;"}
