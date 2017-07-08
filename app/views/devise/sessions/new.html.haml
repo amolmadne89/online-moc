@@ -27,17 +27,17 @@
           - if devise_mapping.rememberable?
             .row
               .col-xs-8
-                .checkbox.icheck{:style => "margin-left:20px;"}
-                  %label
-                    = f.check_box :remember_me
-                      Remember Me
+                / .checkbox.icheck{:style => "margin-left:20px;"}
+                /   %label
+                /     = f.check_box :remember_me
+                /       Remember Me
               .col-xs-4
                 %button.btn.btn-primary.btn-block.btn-flat{:type => "submit"} Login
-        %a{"data-target" => "#resetpass", "data-toggle" => "modal", :style => "cursor:pointer;"} I forgot my password
-        %br/
-    %footer.main-footer{style: "color: #000"}
+        %button.btn.btn-primary.btn-block.btn-flat
+          = link_to 'New User', new_user_registration_path, {:style=> "color: #f5f5f5;"}
+    %footer.main-footer{style: "color: #ffbf1b"}
       %strong
-        Copyright © 2016
+        Copyright © #{Date.today.year}
         = succeed "." do
-          %a{:href => "#"} MON Nashik
+          %a{:href => 'http://www.mocrock.com/'} mocrock
       All rights reserved.

@@ -100,10 +100,14 @@ body {
   z-index: 800;
 }
 .main-footer {
-  background: #fff;
+  /*background: #fff;
   padding: 15px;
-  color: #444;
-  border-top: 1px solid #d2d6de;
+  color: #ffbf1b;
+  border-top: 1px solid #d2d6de; */
+  padding: 15px;
+  color: #ffbf1b;
+  margin-left: 470px;
+  margin-top: -70px;
 }
 /* Fixed layout */
 .fixed .main-header,
@@ -3172,7 +3176,7 @@ table.text-center th {
 }
 .login-page,
 .register-page {
-  background: #d2d6de;
+  background: #a20303;
 }
 .login-box,
 .register-box {

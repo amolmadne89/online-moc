@@ -12,7 +12,6 @@ class Devise::SessionsController < DeviseController
     respond_with(resource, serialize_options(resource)) do |format|
       format.html{render layout: false}
     end
-    #respond_to :js
   end
 
   # POST /resource/sign_in
