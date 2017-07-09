@@ -8,7 +8,7 @@
     = csrf_meta_tags
   %body.hold-transition.login-page
     = bootstrap_flash
-    .login-box
+    .login-box{:style=>"width: 700px;"}
       .login-logo
         = link_to root_path do
           = image_tag "moc_logo.png"
@@ -16,22 +16,28 @@
         = form_for(User.new, :id => 'new_user', :class => 'new_user', url: registration_path(User.new)) do |f|
           .form-group.col-md-6
             %label First Name
-            %input.form-control{:placeholder => "Type here..", :type => "text"}/
+            = f.text_field :first_name, autofocus: true, class: 'form-control',
+              placeholder: 'First Name'
           .form-group.col-md-6
             %label Last Name
-            %input.form-control{:placeholder => "Type here..", :type => "text"}/
+            = f.text_field :last_name, class: 'form-control',
+              placeholder: 'Last Name'
           .form-group.col-md-6
             %label Email
-            %input.form-control{:placeholder => "Type here..", :type => "email"}/
+            = f.email_field :email, class: 'form-control',
+              placeholder: 'somename@domain.com'
           .form-group.col-md-6
             %label Mobile no
-            %input.form-control{:placeholder => "Type here..", :type => "text"}/
+            = f.text_field :mobile_number, class: 'form-control', placeholder: 'Number'
           .form-group.col-md-6
             %label Password
-            %input.form-control{:placeholder => "Type here..", :type => "text"}/
-          .form-group.col-md-6
-            %label Confrim Password
-            %input.form-control{:placeholder => "Type here..", :type => "text"}/
+            = f.password_field :password, class: 'form-control', placeholder: 'Password'
+          / .form-group.col-md-6
+          /   %label Password
+          /   = f.select :role_id, Role.all.collect {|b| [ b.name, b.id ] }, {include_blank: "Role"}, class: 'form-control', required: true
+          / .form-group.col-md-6
+          /   %label Confrim Password
+          /   = f.select :branch_id, Branch.all.collect {|b| [ b.name, b.id ] }, {include_blank: "Branch Name"}, class: 'form-control', required: true  
           .row
             .col-xs-8
             .col-xs-4
