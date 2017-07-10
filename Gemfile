@@ -29,6 +29,12 @@ gem 'haml'
 gem 'rails_12factor', group: :production
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
 
+gem 'geocoder'
+gem "underscore-rails"
+gem "gmaps4rails"
+
+gem "jquery-datatables-rails", "~> 3.3.0"
+gem "jquery-tablesorter"
 gem "watu_table_builder", :require => "table_builder", :path => "vendor/plugins/table_builder"
 gem 'prawn'#, :git => "https://github.com/prawnpdf/prawn.git"
 gem 'prawn-table'
