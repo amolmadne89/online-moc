@@ -20,6 +20,7 @@
  *= require font-awesome
  *= require AdminLTE
  *= skins/skin-blue
+ *= bootstrap.min
  *= bootstrap-sprockets
  *= bootstrap-datepicker
  *= daterangepicker-bs3
