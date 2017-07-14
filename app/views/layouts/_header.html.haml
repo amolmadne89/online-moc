@@ -154,3 +154,14 @@
           / Menu item details
           / / Menu details end
       .clearfix
+:javascript
+  var DropMenuParent = This.parents('.dropdown-menu');
+  if (DropMenuParent.length) {
+    DropMenuParent.prevAll('.dropdown-toggle').on('click', function() {
+      setTimeout(function() {
+         This.scroller();
+         $('.navbar').scrollLock('on', 'div');
+      },50);
+    });
+   return;
+  }
