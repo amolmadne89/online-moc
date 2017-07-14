@@ -73,15 +73,15 @@
                 %label.branch #{Branch.find(current_user.branch_id).name} Order
             = form_for Order.new do |f|
               .row
-                .form-group.col-md-6
-                  %label Branch Name *
-                  - if current_user.present? && (current_user.role.name == 'Admin' || current_user.role.name == 'Counter')
-                    = f.select :branch_id, Branch.where(id: current_user.branch_id).collect {|t| [ t.name, t.id ] }, {}, class: 'form-control'
-                  - elsif current_user.present? && current_user.role.name == 'Customer'
-                    = f.select :branch_id, Branch.where(id: current_user.branch_id).collect {|t| [ t.name, t.id ] }, {}, class: 'form-control'
-                  - else
-                    = f.select :branch_id, Branch.all.collect {|b| [ b.name, b.id ] }, {include_blank: "Please Branch Name"}, class: 'form-control', required: true
-                - if current_user.present? && current_user.role.name == 'Customer'
+                / .form-group.col-md-6
+                /   %label Branch Name *
+                /   - if current_user.present? && (current_user.role.name == 'Admin' || current_user.role.name == 'Counter')
+                /     = f.select :branch_id, Branch.where(id: current_user.branch_id).collect {|t| [ t.name, t.id ] }, {}, class: 'form-control'
+                /   - elsif current_user.present? && current_user.role.name == 'Customer'
+                /     = f.select :branch_id, Branch.where(id: current_user.branch_id).collect {|t| [ t.name, t.id ] }, {}, class: 'form-control'
+                /   - else
+                /     = f.select :branch_id, Branch.all.collect {|b| [ b.name, b.id ] }, {include_blank: "Please Branch Name"}, class: 'form-control', required: true
+                - if current_user.present? && current_user.role.name == 'Customer' && current_user.orders.present?
                   .form-group.col-md-6
                     %label First Name *
                     = f.text_field :first_name, :class => "form-control", :placeholder => "Type here..", required: true, :value=> current_user.first_name
@@ -119,6 +119,11 @@
                   .form-group.col-md-6
                     %label Mobile no *
                     = f.text_field :mobile, :class => "form-control", :placeholder => "Type here..", required: true, :id => "mobile"
+                  .form-group.col-md-6.new-address
+                    %label Address *
+                    = f.text_field :address, :class => "form-control", :placeholder => "Type here..", required: true, :id => "address"
+                    = f.hidden_field :latitude, {:value=>nil, "data-geo"=>"lat"}
+                    = f.hidden_field :longitude, {:value=>nil, "data-geo"=>"lng"}
                   .form-group.col-md-6
                     %label City *
                     = f.text_field :city, :class => "form-control", :placeholder => "Type here..", required: true, :id => "city"
@@ -128,17 +133,19 @@
                   .form-group.col-md-6
                     %label Pincode *
                     = f.text_field :pincode, :class => "form-control", :placeholder => "Type here..", required: true, :id => "pincode"
-                  .form-group.col-md-6
-                    %label Address *
-                    = f.text_area :address, :class => "form-control", :placeholder => "Type here..", required: true, :id => "address"
               %a
-
-                
                 = f.submit "Proceed to order", :class => "btn btn-checkout"
           / Menu item details
           / / Menu details end
       .clearfix
+%script{:src=>"http://maps.googleapis.com/maps/api/js?key=#{'AIzaSyCfCyE9E7VGWcGMTo5u-olPqWCfl3EfekY'}&libraries=places"}
 :javascript
+  $("#address").geocomplete({
+    country: "in",
+    types: [],
+    details: ".new-address",
+    detailsAttribute: "data-geo"
+  });
   function getQuantity(item_id){
     quantity = $('#qty_'+item_id).attr('id');
     var yourSelect = document.getElementById(quantity).value;
@@ -158,7 +165,6 @@
   }
 
   $(".reply_author_check").click(function() {
-    debugger
     if (this.checked) {
         moc_add = $(this).next("label").text();
         if(moc_add == "MOC City Mall Order"){

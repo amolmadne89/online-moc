@@ -23,6 +23,7 @@ gem "font-awesome-rails"
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
+gem 'geocomplete_rails'
 gem 'devise'
 gem "paperclip", "~> 4.3.2"
 gem 'haml'

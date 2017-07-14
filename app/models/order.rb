@@ -1,7 +1,10 @@
 class Order < ActiveRecord::Base
+  geocoded_by :address
+  after_validation :geocode
   belongs_to  :user
   belongs_to  :cart
   belongs_to  :branch
+  validate :set_branch
   def update_shipping_address(cart, user)
     self.update_columns(:shipping_first_name=> self.first_name, :shipping_last_name=> self.last_name, :shipping_email=> self.email, :shipping_mobile=> self.mobile, :shipping_city=> self.city, :shipping_state=> self.state, :shipping_address=> self.address, :shipping_pincode=> self.pincode, :cart_id=> cart.id, :user_id=> user.id)
     cart.update_column(:user_id, user.id)
@@ -31,5 +34,23 @@ class Order < ActiveRecord::Base
 
   def self.get_total_amount
     total = all.sum('total_price')
+  end
+
+  def set_branch
+    distance_array = []
+    Branch.all.each do |branch|
+      distance = Geocoder::Calculations.distance_between([self.latitude,self.longitude], [branch.latitude,branch.longitude])
+      distance_array << {branch: branch.id, distance: distance}
+    end
+    min_hash = distance_array.min_by{|x| x[:distance]}
+    if min_hash[:distance] < 6
+      branch_id = min_hash[:branch]
+      self.branch_id = branch_id
+    else
+      self.errors.add(:base, "Sorry your delvery adress is not in our range")
+      return false
+    end
+    # min_dist = distance_array.map { |dist| dist["distance"].to_f }.min
+    # min_hash = distance_array.select {|f| f["distance"] == min_dist }.last
   end
 end

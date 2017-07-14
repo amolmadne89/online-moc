@@ -11,7 +11,7 @@ class OrdersController < ApplicationController
   def create
     if current_user.blank?
       if User.find_by_email(params["order"]["email"]).blank?
-        @user= User.create(:first_name=> params["order"]["first_name"], :last_name=> params["order"]["last_name"], :role_id=> 7, :email=> params["order"]["email"], :mobile_number=> params["order"]["mobile"], :password=> "pass@" + params["order"]["first_name"].downcase, :branch_id=> params["order"]["branch_id"])
+        @user= User.create(:first_name=> params["order"]["first_name"], :last_name=> params["order"]["last_name"], :role_id=> 7, :email=> params["order"]["email"], :mobile_number=> params["order"]["mobile"], :password=> "pass@" + params["order"]["first_name"].downcase)
         sign_in(@user)
       else
         @user = User.find_by_email(params["order"]["email"])
@@ -24,7 +24,8 @@ class OrdersController < ApplicationController
       @order.update_shipping_address(@cart, current_user)
       redirect_to place_order_order_path(@order)
     else
-      render "cart"
+      redirect_to request.referer
+      flash.notice = "Your not in range" 
     end
   end
 
