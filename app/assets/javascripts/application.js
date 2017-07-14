@@ -23,12 +23,12 @@
 //= require 'timepicki'
 //= require jquery-ui.min-dash
 //= require bootstrap.min
-//= require bootstrap
 //= require bootstrap-datepicker
 //= require app
 //= require npm
 //= require widget-cssStickyHeaders
 //= require_tree .
+//= require geocomplete
 
 
   $('.fancybox').fancybox();
