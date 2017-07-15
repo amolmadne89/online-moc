@@ -11,22 +11,12 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery_ujs
-//= require "jquery-1.11.3.min"
-//= require 'vendors-min'
-//= require 'demo-min'
-//= require 'material'
-//= require 'select2.min'
+//= require bootstrap.min
 //= require 'common'
-//= require 'moment-with-locales-min'
 //= require 'bootstrap-material-datetimepicker'
 //= require 'timepicki'
-//= require jquery-ui.min-dash
-//= require bootstrap.min
 //= require bootstrap-datepicker
 //= require app
-//= require npm
-//= require widget-cssStickyHeaders
 //= require_tree .
 //= require geocomplete
 
