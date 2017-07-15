@@ -17,8 +17,8 @@
 //= require 'timepicki'
 //= require bootstrap-datepicker
 //= require app
-//= require_tree .
 //= require geocomplete
+//= require_tree .
 
 
   $('.fancybox').fancybox();
