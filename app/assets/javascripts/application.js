@@ -18,7 +18,6 @@
 //= require bootstrap-datepicker
 //= require app
 //= require_tree .
-//= require geocomplete
 
 
 $('.fancybox').fancybox();
