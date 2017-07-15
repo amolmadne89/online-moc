@@ -1,4 +1,53 @@
 %script{:src=>"http://maps.googleapis.com/maps/api/js?key=#{'AIzaSyCfCyE9E7VGWcGMTo5u-olPqWCfl3EfekY'}&libraries=places"}
+:javascript
+  $("#address").geocomplete({
+    country: "in",
+    types: [],
+    details: ".new-address",
+    detailsAttribute: "data-geo"
+  });
+  function getQuantity(item_id){
+    quantity = $('#qty_'+item_id).attr('id');
+    var yourSelect = document.getElementById(quantity).value;
+    $.ajax({
+      type: 'GET',
+      url: '/homes/update_query',
+      dataType: 'json',
+      data: { qty : yourSelect, item_id : item_id },
+      success: function(data) {
+        $('#total').html(data[0].total);
+        $('#total-pay').html(data[0].total);
+        $('#item_price_'+ item_id).html(data[0].item_price);
+
+        // var parsed_data = JSON.parse(data);
+      }
+    });
+  }
+
+  $(".reply_author_check").click(function() {
+    if (this.checked) {
+        moc_add = $(this).next("label").text();
+        if(moc_add == "MOC City Mall Order"){
+          $("#first_name").val('MOC City Mall');
+          $("#email").val('admin_city_mall@moc.com');
+          $("#mobile").val('9999999999');
+          $("#city").val('Nashik');
+          $("#state").val('Maharashtra');
+          $("#address").val('City Mall Nashik');
+          $("#pincode").val('123456');
+        }else{
+          $("#first_name").val('MOC College Road');
+          $("#email").val('admin_college_road@moc.com');
+          $("#mobile").val('9999999999');
+          $("#city").val('Nashik');
+          $("#state").val('Maharashtra');
+          $("#address").val('College Road Nashik');
+          $("#pincode").val('123456');
+        }
+    } else {
+        $(".form-control").val("");
+    }
+  });
 - if session[:current_cart_id].present?
   - @cart = Cart.find(session[:current_cart_id])
   %section.menu
@@ -140,52 +189,4 @@
           / / Menu details end
       .clearfix
 
-:javascript
-  $("#address").geocomplete({
-    country: "in",
-    types: [],
-    details: ".new-address",
-    detailsAttribute: "data-geo"
-  });
-  function getQuantity(item_id){
-    quantity = $('#qty_'+item_id).attr('id');
-    var yourSelect = document.getElementById(quantity).value;
-    $.ajax({
-      type: 'GET',
-      url: '/homes/update_query',
-      dataType: 'json',
-      data: { qty : yourSelect, item_id : item_id },
-      success: function(data) {
-        $('#total').html(data[0].total);
-        $('#total-pay').html(data[0].total);
-        $('#item_price_'+ item_id).html(data[0].item_price);
 
-        // var parsed_data = JSON.parse(data);
-      }
-    });
-  }
-
-  $(".reply_author_check").click(function() {
-    if (this.checked) {
-        moc_add = $(this).next("label").text();
-        if(moc_add == "MOC City Mall Order"){
-          $("#first_name").val('MOC City Mall');
-          $("#email").val('admin_city_mall@moc.com');
-          $("#mobile").val('9999999999');
-          $("#city").val('Nashik');
-          $("#state").val('Maharashtra');
-          $("#address").val('City Mall Nashik');
-          $("#pincode").val('123456');
-        }else{
-          $("#first_name").val('MOC College Road');
-          $("#email").val('admin_college_road@moc.com');
-          $("#mobile").val('9999999999');
-          $("#city").val('Nashik');
-          $("#state").val('Maharashtra');
-          $("#address").val('College Road Nashik');
-          $("#pincode").val('123456');
-        }
-    } else {
-        $(".form-control").val("");
-    }
-  });
