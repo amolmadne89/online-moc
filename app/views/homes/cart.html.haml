@@ -73,14 +73,6 @@
                 %label.branch #{Branch.find(current_user.branch_id).name} Order
             = form_for Order.new do |f|
               .row
-                / .form-group.col-md-6
-                /   %label Branch Name *
-                /   - if current_user.present? && (current_user.role.name == 'Admin' || current_user.role.name == 'Counter')
-                /     = f.select :branch_id, Branch.where(id: current_user.branch_id).collect {|t| [ t.name, t.id ] }, {}, class: 'form-control'
-                /   - elsif current_user.present? && current_user.role.name == 'Customer'
-                /     = f.select :branch_id, Branch.where(id: current_user.branch_id).collect {|t| [ t.name, t.id ] }, {}, class: 'form-control'
-                /   - else
-                /     = f.select :branch_id, Branch.all.collect {|b| [ b.name, b.id ] }, {include_blank: "Please Branch Name"}, class: 'form-control', required: true
                 - if current_user.present? && current_user.role.name == 'Customer' && current_user.orders.present?
                   .form-group.col-md-6
                     %label First Name *
@@ -94,6 +86,11 @@
                   .form-group.col-md-6
                     %label Mobile no *
                     = f.text_field :mobile, :class => "form-control", :placeholder => "Type here..", required: true, :value=> current_user.mobile_number
+                  .form-group.col-md-6.new-address
+                    %label Address *
+                    = f.text_field :address, :class => "form-control", :placeholder => "Type here..", required: true, :id => "address", :value=> current_user.orders.last.address
+                    = f.hidden_field :latitude, {:value=>nil, "data-geo"=>"lat"}
+                    = f.hidden_field :longitude, {:value=>nil, "data-geo"=>"lng"}
                   .form-group.col-md-6
                     %label City *
                     = f.text_field :city, :class => "form-control", :placeholder => "Type here..", required: true, :value=> current_user.orders.last.city
@@ -103,9 +100,6 @@
                   .form-group.col-md-6
                     %label Pincode *
                     = f.text_field :pincode, :class => "form-control", :placeholder => "Type here..", required: true, :value=> current_user.orders.last.pincode
-                  .form-group.col-md-6
-                    %label Address *
-                    = f.text_area :address, :class => "form-control", :placeholder => "Type here..", required: true, :value=> current_user.orders.last.address
                 - else
                   .form-group.col-md-6
                     %label First Name *
@@ -119,11 +113,20 @@
                   .form-group.col-md-6
                     %label Mobile no *
                     = f.text_field :mobile, :class => "form-control", :placeholder => "Type here..", required: true, :id => "mobile"
-                  .form-group.col-md-6.new-address
-                    %label Address *
-                    = f.text_field :address, :class => "form-control", :placeholder => "Type here..", required: true, :id => "address"
-                    = f.hidden_field :latitude, {:value=>nil, "data-geo"=>"lat"}
-                    = f.hidden_field :longitude, {:value=>nil, "data-geo"=>"lng"}
+                  - if current_user.present? && (current_user.role.name == 'Admin' || current_user.role.name == 'Counter')
+                    .form-group.col-md-6
+                      %label Address *
+                      = f.text_field :address, :class => "form-control", :placeholder => "Type here..", required: true, :id => "address"
+                      - branch = Branch.find(current_user.branch_id)
+                      = f.hidden_field :branch_id, :value => branch.id
+                      = f.hidden_field :latitude, :value => branch.latitude
+                      = f.hidden_field :longitude, :value => branch.longitude
+                  - else
+                    .form-group.col-md-6.new-address
+                      %label Address *
+                      = f.text_field :address, :class => "form-control", :placeholder => "Type here..", required: true, :id => "address"
+                      = f.hidden_field :latitude, {:value=>nil, "data-geo"=>"lat"}
+                      = f.hidden_field :longitude, {:value=>nil, "data-geo"=>"lng"}
                   .form-group.col-md-6
                     %label City *
                     = f.text_field :city, :class => "form-control", :placeholder => "Type here..", required: true, :id => "city"

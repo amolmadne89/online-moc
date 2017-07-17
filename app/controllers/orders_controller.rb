@@ -9,6 +9,7 @@ class OrdersController < ApplicationController
   end
 
   def create
+    binding.pry
     if current_user.blank?
       if User.find_by_email(params["order"]["email"]).blank?
         @user= User.create(:first_name=> params["order"]["first_name"], :last_name=> params["order"]["last_name"], :role_id=> 7, :email=> params["order"]["email"], :mobile_number=> params["order"]["mobile"], :password=> "pass@" + params["order"]["first_name"].downcase)

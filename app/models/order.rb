@@ -37,20 +37,20 @@ class Order < ActiveRecord::Base
   end
 
   def set_branch
-    distance_array = []
-    Branch.all.each do |branch|
-      distance = Geocoder::Calculations.distance_between([self.latitude,self.longitude], [branch.latitude,branch.longitude])
-      distance_array << {branch: branch.id, distance: distance}
+    if self.branch_id.blank?
+      distance_array = []
+      Branch.all.each do |branch|
+        distance = Geocoder::Calculations.distance_between([self.latitude,self.longitude], [branch.latitude,branch.longitude])
+        distance_array << {branch: branch.id, distance: distance}
+      end
+      min_hash = distance_array.min_by{|x| x[:distance]}
+      if min_hash[:distance] < 6
+        branch_id = min_hash[:branch]
+        self.branch_id = branch_id
+      else
+        self.errors.add(:base, "Sorry your adress is not in our range")
+        return false
+      end
     end
-    min_hash = distance_array.min_by{|x| x[:distance]}
-    if min_hash[:distance] < 6
-      branch_id = min_hash[:branch]
-      self.branch_id = branch_id
-    else
-      self.errors.add(:base, "Sorry your delvery adress is not in our range")
-      return false
-    end
-    # min_dist = distance_array.map { |dist| dist["distance"].to_f }.min
-    # min_hash = distance_array.select {|f| f["distance"] == min_dist }.last
   end
 end
