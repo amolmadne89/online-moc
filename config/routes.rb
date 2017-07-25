@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     resources :products
     resources :orders
   end
+  resources :contact_us
   resources :aboutus
   resources :feedbacks
   resources :orders do

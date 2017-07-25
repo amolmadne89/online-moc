@@ -304,8 +304,8 @@ div#delivery .form-control:hover {}
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-inline-box;
-    line-height: 22px;
-    max-height: 21px;
+    line-height: 29px;
+    max-height: 29px;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
     max-width: 90%;

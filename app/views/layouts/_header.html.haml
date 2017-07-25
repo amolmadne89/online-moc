@@ -27,13 +27,19 @@
               - Category.all.each do |c|
                 %li
                   %a{:href => prodct_by_category_home_path(c)} #{c.category_name}
-          / %li
-          /   %a{:href => "#"} About
           %li
             %a{:href => "#"} Gallery
           %li
-            %a{:href => "#"} Contact Us
+            %a{:href => contact_us_path} Contact Us
+          %li
+            %a{:href => "#"} Review
         %ul.nav.navbar-nav.navbar-right
+          %li
+            %a
+              Order Now
+              %i.fa.fa-phone
+              9960264332, 8286209737
+
           %li
             - if current_user.present?
               - if current_user.role.name == 'Admin' || current_user.role.name == 'SuperAdmin'
