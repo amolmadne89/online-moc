@@ -27,12 +27,12 @@
               - Category.all.each do |c|
                 %li
                   %a{:href => prodct_by_category_home_path(c)} #{c.category_name}
-          / %li
-          /   %a{:href => "#"} About
           %li
             %a{:href => "#"} Gallery
           %li
             %a{:href => contact_us_path} Contact Us
+          %li
+            %a{:href => "#"} Review
         %ul.nav.navbar-nav.navbar-right
           %li
             %a
