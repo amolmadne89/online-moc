@@ -32,8 +32,14 @@
           %li
             %a{:href => "#"} Gallery
           %li
-            %a{:href => "#"} Contact Us
+            %a{:href => contact_us_path} Contact Us
         %ul.nav.navbar-nav.navbar-right
+          %li
+            %a
+              Order Now
+              %i.fa.fa-phone
+              9960264332, 8286209737
+
           %li
             - if current_user.present?
               - if current_user.role.name == 'Admin' || current_user.role.name == 'SuperAdmin'
