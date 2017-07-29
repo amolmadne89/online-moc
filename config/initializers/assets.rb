@@ -3,7 +3,13 @@
 # Version of your assets, change this if you want to expire all your assets.
 Rails.application.config.assets.version = '1.0'
 Rails.application.config.assets.precompile += %w( '.ttf' )
+Rails.application.config.assets.precompile += %w( bootstrap.min.css )
 Rails.application.config.assets.precompile += %w( geocomplete.min.js )
+Rails.application.config.assets.precompile += %w( custome_application.css )
+Rails.application.config.assets.precompile += %w( custome_application.js )
+Rails.application.config.assets.precompile += %w( admin_application.css )
+Rails.application.config.assets.precompile += %w( admin_application.js )
+
 # Add additional assets to the asset load path
 # Rails.application.config.assets.paths << Emoji.images_path
 
