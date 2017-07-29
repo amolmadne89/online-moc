@@ -3,9 +3,10 @@
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %title Nashik MOC
     = favicon_link_tag 'mocf01.png'
-    = stylesheet_link_tag    'application', media: 'all'
-    = javascript_include_tag 'application', media: 'all'
-    = csrf_meta_tags
+    = stylesheet_link_tag    'admin_application', media: 'all'
+    = stylesheet_link_tag 'bootstrap.min.css', 'data-turbolinks-track' => true
+    = javascript_include_tag 'admin_application', 'data-turbolinks-track' => true
+    = csrf_meta_tags  
   %body.hold-transition.skin-blue.sidebar-mini.fixed.sidebar-collapse
     .wrapper
       = render partial: 'layouts/admin/header'
@@ -13,4 +14,4 @@
       .content-wrapper
         = bootstrap_flash
         = yield
-      =# render partial: 'layouts/admin/footer'
+      =# render partial: 'layouts/footer'

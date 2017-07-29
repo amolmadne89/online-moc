@@ -24,6 +24,7 @@ module Moc
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
     config.serve_static_assets = true
+    config.api_only = false
     MAP_API = 'AIzaSyBZA9Ug_HV6AGmjZqUoJTrEyB8T55MemBI'
   end
 end
