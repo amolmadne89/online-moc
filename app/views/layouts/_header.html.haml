@@ -42,8 +42,9 @@
           %li
             - if current_user.present?
               - if current_user.role.name == 'Admin' || current_user.role.name == 'SuperAdmin'
-                %div{style: "margin-right: 25px; margin-top: 15px;"}
+                %li
                   = link_to 'Admin', admin_orders_path, {style: "color: #920606;"}
+                %li  
                   = link_to 'Logout', destroy_user_session_path, :method => :delete, style: "padding-left: 10px;"
               - else
                 = link_to 'Logout', destroy_user_session_path, :method => :delete
@@ -52,12 +53,13 @@
               = link_to 'Login', new_user_session_path
           %li.dropdown.mega-dropdown
             - if session[:current_cart_id].present?
-              %a.dropdown-toggle{:href => "javascript:;"}
+              %a.dropdown-toggle{:href => "javascript:;", "data-toggle" => "dropdown"}
                 %i.fa.fa-shopping-cart{"aria-hidden" => "true"}
                 %span.badge= Cart.find(session[:current_cart_id]).line_items.count
             - else
-              %i.fa.fa-shopping-cart{"aria-hidden" => "true", :style=> "padding-top: 18px; "}
-              %span.badge 0
+              %a
+                %i.fa.fa-shopping-cart{"aria-hidden" => "true"}
+                %span.badge 0
             -if session[:current_cart_id].present?
               %ul.dropdown-menu.cart-menu
                 - Cart.find(session[:current_cart_id]).line_items.each do |item|
