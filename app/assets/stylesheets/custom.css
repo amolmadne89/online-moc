@@ -287,9 +287,7 @@ table.dataTable thead > tr > th {
     background: #fff;text-align: left;
 }
 .multiselect-container>li>a>label{    padding: 3px 20px 3px 15px;}
-.login-page{
-    background: image-url("bg-login.jpg") no-repeat center center!important;    background-size: cover!important;
-}
+
 .multiselect-container>li>a {
     padding: 6px 15px;
 }
