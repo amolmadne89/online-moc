@@ -1,6 +1,5 @@
 
 @import "bootstrap-sprockets";
-@import "bootstrap.min";
 @import "bootstrap-datepicker";
 @import "bootstrap-multiselect";
 @import "daterangepicker-bs3";
