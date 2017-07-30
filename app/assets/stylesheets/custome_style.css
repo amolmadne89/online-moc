@@ -137,16 +137,6 @@ section h2 {
     margin-bottom: 6px;
 }
 
-footer {
-    background: #a20303;
-    color: #dcdcdc;
-    padding: 90px 0 5px;
-}
-
-footer a {
-    color: #ffcc29;
-}
-
 .contact-wrap {
     padding-top: 40px;
 }
@@ -379,4 +369,22 @@ div#delivery .form-control:hover {}
 }
 .social-auth-links {
   margin: 10px 0;
+}
+
+footer.main-footer {
+      background: transparent;
+    /* text-align: center; */
+    font-size: 90%;
+    margin-left: 40%;
+    color: #a7a7a7;
+    border: none;
+}
+
+footer {
+    background: #a20303;
+    color: #dcdcdc;
+}
+
+footer a {
+    color: #ffcc29;
 }
