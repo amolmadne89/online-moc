@@ -46,14 +46,6 @@ li.new-launch a:hover {
   border-radius: 3px!important;
   float: right;
 }
-footer.main-footer {
-      background: transparent;
-    /* text-align: center; */
-    font-size: 80%;
-    margin-left: 38%;
-    color: #a7a7a7;
-    border: none;
-}
 .navbar-nav>.user-menu>.dropdown-menu {
   width: 320px;
 }
