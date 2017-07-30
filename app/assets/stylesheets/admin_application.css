@@ -1,11 +1,5 @@
 
 @import "bootstrap-sprockets";
-@import "bootstrap-datepicker";
-@import "bootstrap-multiselect";
-@import "daterangepicker-bs3";
-@import "font-awesome";
-@import "dataTables/bootstrap/3/jquery.dataTables.bootstrap";
-@import "jquery-tablesorter/theme.default";
 @import "AdminLTE";
 @import "skins/skin-blue";
 @import "custom";
