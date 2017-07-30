@@ -54,7 +54,6 @@ gem "jquery-tablesorter"
 gem "watu_table_builder", :require => "table_builder", :path => "vendor/plugins/table_builder"
 gem 'prawn'#, :git => "https://github.com/prawnpdf/prawn.git"
 gem 'prawn-table'
-gem 'sprockets-rails', :require => 'sprockets/railtie'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
