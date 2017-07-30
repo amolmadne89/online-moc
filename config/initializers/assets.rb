@@ -5,8 +5,8 @@ Rails.application.config.assets.version = '1.0'
 Rails.application.config.assets.precompile += %w( '.ttf' )
 Rails.application.config.assets.precompile += %w( bootstrap.min.css )
 Rails.application.config.assets.precompile += %w( geocomplete.min.js )
-Rails.application.config.assets.precompile += %w( custome_application.css )
-Rails.application.config.assets.precompile += %w( custome_application.js )
+Rails.application.config.assets.precompile += %w( custom_application.css )
+Rails.application.config.assets.precompile += %w( custom_application.js )
 Rails.application.config.assets.precompile += %w( admin_application.css )
 Rails.application.config.assets.precompile += %w( admin_application.js )
 
