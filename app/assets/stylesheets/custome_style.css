@@ -374,7 +374,7 @@ div#delivery .form-control:hover {}
 footer.main-footer {
       background: transparent;
     /* text-align: center; */
-    font-size: 90%;
+    font-size: 80%;
     margin-left: 40%;
     color: #a7a7a7;
     border: none;
@@ -384,6 +384,8 @@ footer {
     background: #a20303;
     color: #dcdcdc;
 }
+
+footer.index{padding: 40px 0 5px;}
 
 footer a {
     color: #ffcc29;
