@@ -1,16 +1,27 @@
 %footer.index
   .container-fluid
-    .pull-right
-      %span.small Copyright © 2017 mocrock. All Rights Reserved.
-      %span.small
-    %ul.list-inline
-      %li
-        %a{:href => ""} Home
-      %li
-        %a{:href => ""} How it Works
-      %li
-        %a{:href => ""} Terms &amp; Conditions
-      %li
-        %a{:href => contact_us_path} Contact Us
-    .clearfix
+    %table
+      %tr
+        .pull-right
+          %a.face{:href => "https://www.facebook.com/mocnashik", :target=> "_blank"}
+            %img.img{:src => "/assets/fb.png", :style=> "height: 35px;"}
+            / %i.fa.fa-facebook
+          / %span.small.footer FOLLOW US ON
+        .clearfix    
+      %br
+      %tr
+        .pull-right
+          %span.small.footer Copyright © 2017 mocrock. All Rights Reserved.
+          %span.small
+        %ul.list-inline
+          %li
+            %a{:href => root_path} Home
+          %li
+            %a{:href => ""} How it Works
+          %li
+            %a{:href => ""} Terms &amp; Conditions
+          %li
+            %a{:href => contact_us_path} Contact Us
   .clearfix
+:css
+  .face{margin-right: 220px}

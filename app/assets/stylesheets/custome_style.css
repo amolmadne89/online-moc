@@ -385,8 +385,19 @@ footer {
     color: #dcdcdc;
 }
 
-footer.index{padding: 40px 0 5px;}
+footer.index{padding: 20px 0 5px;}
 
 footer a {
     color: #ffcc29;
+}
+
+p {
+    margin: 0 4px 10px;
+}
+
+.small, small {
+    font-size: 69%;
+}
+.small.footer {
+    font-size: 85%;
 }
