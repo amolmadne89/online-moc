@@ -1,0 +1,38 @@
+%section.content-header
+  %h1
+    %strong Manage Category Reports
+  %ol.breadcrumb
+    %li
+      = link_to root_path do
+        = fa_icon 'dashboard'
+        Dashboard
+    %li.active Manage Category Reports
+%section.content
+  .row
+    .col-md-12
+      .box.box-primary
+        .box-body
+          .box-header
+            = render partial: "search"
+          .table-responsive
+            %table.table.table-bordered.table-condensed.table-striped.tablesorter
+              %thead
+                %tr
+                  %th Name
+                  %th Amount
+                %tr  
+              %tbody
+                - total_amount = 0
+                - @categories.each do |category|
+                  %tr
+                    - total = category.get_total_price(@line_items)
+                    - total_amount = total_amount + total
+                    %td
+                      %strong
+                        = category.category_name
+                    %td= total
+                %tr
+                  %th Total Amount
+                  %td
+                    %i.fa.fa-inr
+                    = total_amount

@@ -8,6 +8,12 @@ class ReportsController < ApplicationController
     @total = @orders.get_total_amount
 	end
 
+  def category
+    set_date
+    @categories = Category.all
+    @line_items = Category.order_line_items(current_user, @start_date, @end_date)
+  end
+
 	private
     def set_user
       @user = User.find(params["id"])
