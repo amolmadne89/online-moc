@@ -29,7 +29,11 @@ class Order < ActiveRecord::Base
   end
 
   def self.branch_order_report(user, start_date, end_date)
-    orders = Order.where("branch_id =? and created_at >=(?) and created_at <=(?)", user.branch_id, start_date, end_date)
+    orders = Order.where("branch_id =? and created_at >=(?) and created_at <=(?) and order_status =?", user.branch_id, start_date, end_date, "confirmed")
+  end
+
+  def self.category_wise_orders(user,start_date, end_date)
+    orders = self.branch_order_report(user,start_date, end_date)
   end
 
   def self.get_total_amount

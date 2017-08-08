@@ -21,7 +21,7 @@
                   New Product
         .box-body
           .table-responsive
-            %table.table.table-bordered.table-condensed.table-striped
+            %table.table.table-bordered.table-condensed.table-striped.tablesorter#data-table
               %thead
                 %tr
                   %th Product Name
@@ -29,7 +29,6 @@
                   %th Category
                   %th Price
                   %th Image
-                  %th Created Date
                   %th Status
                   %th Actions
               %tbody
@@ -42,7 +41,6 @@
                     %td= product.category.category_name rescue nil
                     %td= product.price
                     %td= image_tag Photo.find_by_imageable_id(product.id).image.url(:thumb) rescue nil
-                    %td= product.created_at.strftime("%d %B %Y : %I.%M %p")
                     %td= product.status
                     %td
                       = link_to edit_admin_product_path(product), class: "btn btn-primary m-r-5",

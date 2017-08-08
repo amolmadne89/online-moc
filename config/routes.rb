@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   resources :reports do
     collection do
       get :orders
+      get :category
     end
   end
   resources :homes do
