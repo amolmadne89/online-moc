@@ -1,9 +1,10 @@
 class Admin::OrdersController < ApplicationController
   before_action :authenticate_admin
+  before_action :set_order, only: [:show, :edit, :update, :destroy]
   layout "admin/application"
   require 'order_pdf'
   def index
-    @orders = Order.where(branch_id: current_user.branch_id)
+    @orders = Order.where(branch_id: current_user.branch_id).order("created_at asc NULLS FIRST")
   end
   # def new
   #   @product = Product.new
@@ -32,18 +33,21 @@ class Admin::OrdersController < ApplicationController
   end
 
   def edit
-    @product = Product.find(params[:id])
+    respond_to :js
   end
 
   def update
-    @product = Product.find(params[:id])
-    @product.update_attributes(product_params)
-    redirect_to admin_products_path
+    @order.update_attributes(order_params)
+    redirect_to admin_orders_path
   end
 
   private
 
   def order_params
     params.require(:order).permit!
+  end
+
+  def set_order
+    @order = Order.find(params["id"])
   end
 end

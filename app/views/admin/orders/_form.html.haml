@@ -1,0 +1,21 @@
+#lead-details.modal{:role => "dialog", :tabindex => "-1"}
+  .modal-dialog.modal-sl
+    .modal-content
+      .modal-header
+        %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+        %h4.modal-title Update Order Status
+      .modal-body
+        = form_for [:admin, @order] do |f|
+          %form
+            .modal-body
+              .col-xs-12.col-sm-12.col-md-12
+                .row
+                  .col-sm-12
+                    .form-group
+                      %label Status
+                      = f.select :order_status, options_for_select(Order::ORDER_STATUSES, f.object.order_status), {include_blank: "Order Status"}, class: 'form-control', class: "info_data_type", :required=>true
+              .clearfix
+            .modal-footer
+              = button_tag type: "button", class: "btn btn-danger", data: {dismiss: "modal"} do
+                Cancel
+              = submit_tag 'Update', class: 'btn btn-success', data: { disable_with: 'Please wait...' }
