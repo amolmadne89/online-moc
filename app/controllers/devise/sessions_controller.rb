@@ -17,23 +17,18 @@ class Devise::SessionsController < DeviseController
   # POST /resource/sign_in
   def create
     user = User.find_by_email(params['user']['email']) rescue nil
-    if user.present?  
-      if params['user']['branch_id'].to_i == user.branch_id
-        self.resource = warden.authenticate!(auth_options)
-        #set_flash_message!(:notice, :signed_in)
-        # sign_in(resource_name, resource)
-        # yield resource if block_given?
-        if self.resource.present?
-          sign_in(resource_name, resource)
-          yield resource if block_given?
-        else
-          @error_msg = "Invalid Email and Password" if @error_msg.blank?
-        end
-        respond_with resource, location: after_sign_in_path_for(resource)
+    if user.present?
+      self.resource = warden.authenticate!(auth_options)
+      #set_flash_message!(:notice, :signed_in)
+      # sign_in(resource_name, resource)
+      # yield resource if block_given?
+      if self.resource.present?
+        sign_in(resource_name, resource)
+        yield resource if block_given?
       else
-        @error_msg = "Invalid Branch" if @error_msg.blank?
-        redirect_to new_user_session_path
+        @error_msg = "Invalid Email and Password" if @error_msg.blank?
       end
+      respond_with resource, location: after_sign_in_path_for(resource)
     else
       @error_msg = "Invalid Email Id" if @error_msg.blank?
       redirect_to new_user_session_path

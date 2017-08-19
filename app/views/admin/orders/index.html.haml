@@ -47,11 +47,13 @@
                     %td= order.total_price
                     %td= order.order_status
                     %td
-                      = link_to edit_admin_order_path(order), class: "btn btn-primary m-r-5",
-                        style: "padding: 0px; width: 20px;" do
+                      = link_to edit_admin_order_path(order), class: 'btn btn-primary m-r-5', style: 'padding: 0px; width: 20px;', remote: true do
                         = fa_icon "pencil"
+                      / = link_to edit_admin_order_path(order), class: "btn btn-primary m-r-5",
+                      /   style: "padding: 0px; width: 20px;" do
                       = link_to admin_product_path(order), class: "btn btn-danger", method: :delete, data: {:confirm => "Would you like to permanently delete this products?", "commit-class" => "btn btn-success", "cancel-class" => "btn btn-danger"}, style: "padding: 0px; width: 20px;" do
                         = fa_icon "trash-o"
                       = link_to admin_order_path(order, :format => 'pdf'), class: "btn btn-primary m-r-5",
                         style: "padding: 0px; width: 20px;" do
                         = fa_icon "print"
+#edit-lead-container

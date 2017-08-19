@@ -18,8 +18,8 @@
             = f.email_field :email, autofocus: true, class: 'form-control',
               placeholder: 'somename@domain.com'
             %span.glyphicon.glyphicon-envelope.form-control-feedback
-          .form-group.has-feedback  
-            = f.select :branch_id, Branch.all.collect {|b| [ b.name, b.id ] }, {include_blank: "Branch Name"}, class: 'form-control', required: true
+          / .form-group.has-feedback  
+          /   = f.select :branch_id, Branch.all.collect {|b| [ b.name, b.id ] }, {include_blank: "Branch Name"}, class: 'form-control', required: true
           .form-group.has-feedback
             = f.password_field :password, autocomplete: 'off', class: 'form-control',
                 placeholder: '••••••••'

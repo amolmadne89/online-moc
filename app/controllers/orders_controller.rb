@@ -40,7 +40,11 @@ class OrdersController < ApplicationController
 
   def thanks_page
     @order = Order.find(params["id"])
-    @order.update_column(:order_status, "confirmed")
+    if current_user.is_customer
+      @order.update_column(:order_status, "pending")
+    else  
+      @order.update_column(:order_status, "confirmed")
+    end
     session[:current_cart_id] = nil
   end
 

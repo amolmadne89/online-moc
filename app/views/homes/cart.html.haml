@@ -68,7 +68,7 @@
               Proceed to checkout
           #deliverye.collapse
             %h3 Delivery details
-            - if current_user.present? && (current_user.role.name == 'Admin' || current_user.role.name == 'Counter')
+            - if current_user.present? && !current_user.is_customer
               %input.reply_author_check{:type => "checkbox", :style => "margin-right:5px; margin-bottom:10px;"}
                 %label.branch #{Branch.find(current_user.branch_id).name} Order
             = form_for Order.new do |f|
@@ -89,8 +89,8 @@
                   .form-group.col-md-6.new-address
                     %label Address *
                     = f.text_field :address, :class => "form-control", :placeholder => "Type here..", required: true, :id => "address", :value=> current_user.orders.last.address
-                    = f.hidden_field :latitude, {:value=>nil, "data-geo"=>"lat"}
-                    = f.hidden_field :longitude, {:value=>nil, "data-geo"=>"lng"}
+                    = f.hidden_field :latitude, {:value=>current_user.orders.last.latitude, "data-geo"=>"lat"}
+                    = f.hidden_field :longitude, {:value=>current_user.orders.last.longitude, "data-geo"=>"lng"}
                   .form-group.col-md-6
                     %label City *
                     = f.text_field :city, :class => "form-control", :placeholder => "Type here..", required: true, :value=> current_user.orders.last.city
@@ -113,7 +113,7 @@
                   .form-group.col-md-6
                     %label Mobile no *
                     = f.text_field :mobile, :class => "form-control", :placeholder => "Type here..", required: true, :id => "mobile"
-                  - if current_user.present? && (current_user.role.name == 'Admin' || current_user.role.name == 'Counter')
+                  - if current_user.present? && (current_user.role.name == 'SuperAdmin' || current_user.role.name == 'Admin' || current_user.role.name == 'Counter')
                     .form-group.col-md-6
                       %label Address *
                       = f.text_field :address, :class => "form-control", :placeholder => "Type here..", required: true, :id => "address"

@@ -4,7 +4,9 @@ class Order < ActiveRecord::Base
   belongs_to  :user
   belongs_to  :cart
   belongs_to  :branch
-  validate :set_branch
+  validate :set_branch, on: :create
+  ORDER_STATUSES = ['pending', 'confirmed', 'cancel']
+
   def update_shipping_address(cart, user)
     self.update_columns(:shipping_first_name=> self.first_name, :shipping_last_name=> self.last_name, :shipping_email=> self.email, :shipping_mobile=> self.mobile, :shipping_city=> self.city, :shipping_state=> self.state, :shipping_address=> self.address, :shipping_pincode=> self.pincode, :cart_id=> cart.id, :user_id=> user.id)
     cart.update_column(:user_id, user.id)
