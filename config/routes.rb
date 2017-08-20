@@ -13,7 +13,11 @@ Rails.application.routes.draw do
     resources :roles
     resources :categories
     resources :products
-    resources :orders
+    resources :orders do
+      member do
+        get :set_notification_nil
+      end
+    end
   end
   resources :contact_us
   resources :aboutus

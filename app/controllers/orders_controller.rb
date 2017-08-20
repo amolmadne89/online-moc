@@ -42,6 +42,7 @@ class OrdersController < ApplicationController
     @order = Order.find(params["id"])
     if current_user.is_customer
       @order.update_column(:order_status, "pending")
+      notification = Notification.create(notifiable_type: 'Order', notifiable_id: @order.id, is_checked: false, branch_id: @order.branch_id)
     else  
       @order.update_column(:order_status, "confirmed")
     end
