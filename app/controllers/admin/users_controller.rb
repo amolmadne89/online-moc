@@ -3,7 +3,8 @@ class Admin::UsersController < ApplicationController
   layout "admin/application"
 
   def index
-    @users = User.where(role_id: 7).where(branch_id: current_user.branch_id).order("created_at desc")
+    #@users = User.where(role_id: 7).where(branch_id: current_user.branch_id).order("created_at desc")
+    @users = User.all
   end
 
   def new

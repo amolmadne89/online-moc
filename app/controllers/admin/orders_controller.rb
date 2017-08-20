@@ -1,6 +1,6 @@
 class Admin::OrdersController < ApplicationController
   before_action :authenticate_admin
-  before_action :set_order, only: [:show, :edit, :update, :destroy]
+  before_action :set_order, only: [:show, :edit, :update, :destroy, :set_notification_nil]
   layout "admin/application"
   require 'order_pdf'
   def index
@@ -39,6 +39,12 @@ class Admin::OrdersController < ApplicationController
   def update
     @order.update_attributes(order_params)
     redirect_to admin_orders_path
+  end
+
+  def set_notification_nil
+    notification = Notification.find_by_notifiable_id(@order.id)
+    notification.update_attributes(is_checked: true)
+    redirect_to request.referer
   end
 
   private
