@@ -53,7 +53,6 @@ class Order < ActiveRecord::Base
       if min_hash[:distance] < 6
         branch_id = min_hash[:branch]
         self.branch_id = branch_id
-        binding.pry
       else
         self.errors.add(:base, "Sorry your adress is not in our range")
         return false
