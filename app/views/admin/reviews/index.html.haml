@@ -1,0 +1,31 @@
+%section.content-header
+  %h1
+    %strong Manage Reviews
+  %ol.breadcrumb
+    %li
+      = link_to root_path do
+        = fa_icon 'dashboard'
+        Dashboard
+    %li.active Manage Reviews
+%section.content
+  .row
+    .col-md-12
+      .box.box-primary
+        .box-header
+        .box-body
+          .table-responsive
+            %table.table.table-bordered.table-condensed.table-striped.tablesorter#data-table
+              %thead
+                %tr
+                  %th Product Name
+                  %th Mobile
+                  %th Email
+                  %th Review
+              %tbody
+                - @reviews.each do |review|
+                  %tr
+                    %td= review.full_name
+                    %td= review.mobile
+                    %td= review.email
+                    %td
+                      %span.more= review.comment

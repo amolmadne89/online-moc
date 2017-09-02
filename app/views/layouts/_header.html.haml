@@ -32,7 +32,7 @@
           %li
             %a{:href => contact_us_path} Contact Us
           %li
-            %a{:href => "#"} Review
+            %a{:href => feedbacks_path} Review
         %ul.nav.navbar-nav.navbar-right
           %li
             %a
@@ -101,30 +101,30 @@
     %span.glyphicon.glyphicon-chevron-right{"aria-hidden" => "true"}
     %span.sr-only Next
   .clearfix
-= form_for(User.new, :id => 'new_user', :class => 'new_user', url: session_path(User.new)) do |f|
-  #login.modal{"aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
-    .modal-dialog{:role => "document"}
-      .modal-content
-        .modal-header
-          %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
-            %span{"aria-hidden" => "true"} ×
-          %h4#myModalLabel.modal-title Login
-        .modal-body
-          %form
-            .form-group
-              %label Your Name/ Email
-              = f.email_field :email, :placeholder => 'User name / Email Id', :class => 'form-control', require: true
-            .form-group
-              %label Password
-              = f.password_field :password, autocomplete: "off", :placeholder => "Password", :class => 'form-control', require: true
-            .form-group
-              %label Password
-              = f.select :branch_id, Branch.all.collect {|b| [ b.name, b.id ] }, {include_blank: "Branch Name"}, class: 'form-control', required: true
-            .form-group
-              %button.btn.btn-block.btn-checkout Login
-        .modal-footer
-          New user?
-          %a.btn.btn-success{"data-target" => "#register", "data-toggle" => "modal", :href => "#"} Register
+/ = form_for(User.new, :id => 'new_user', :class => 'new_user', url: session_path(User.new)) do |f|
+/   #login.modal{"aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+/     .modal-dialog{:role => "document"}
+/       .modal-content
+/         .modal-header
+/           %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+/             %span{"aria-hidden" => "true"} ×
+/           %h4#myModalLabel.modal-title Login
+/         .modal-body
+/           %form
+/             .form-group
+/               %label Your Name/ Email
+/               = f.email_field :email, :placeholder => 'User name / Email Id', :class => 'form-control', require: true
+/             .form-group
+/               %label Password
+/               = f.password_field :password, autocomplete: "off", :placeholder => "Password", :class => 'form-control', require: true
+/             .form-group
+/               %label Password
+/               = f.select :branch_id, Branch.all.collect {|b| [ b.name, b.id ] }, {include_blank: "Branch Name"}, class: 'form-control', required: true
+/             .form-group
+/               %button.btn.btn-block.btn-checkout Login
+/         .modal-footer
+/           New user?
+/           %a.btn.btn-success{"data-target" => "#register", "data-toggle" => "modal", :href => "#"} Register
 #register.modal{"aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
   .modal-dialog{:role => "document"}
     .modal-content
