@@ -18,11 +18,16 @@
       = f.select :status, options_for_select([["Active", true], ["Inactive", false]], (@category.status) || true), prompt: true, required: true
   .col-md-12
     .form-group
-      = f.fields_for :photos do |builder|
-        %div
-          = render "admin/categories/add_image", :f => builder
-    .addimages
-      = link_to_add_address_fields("Add Project Image", f, :photos, "admin/categories/add_image")
+      %label{:for => "exampleInputFile"} Add Category Image
+      %br/
+      .row
+        .col-md-12
+          .form-group
+            = f.fields_for :photos do |builder|
+              %div
+                = render "photo_fields", :f => builder
+          .addimages
+            = link_to_add_association 'Category Image', f, :photos, :class=>"btn btn-info"
   %div{align: "center"}
     .col-md-12
       .form-group

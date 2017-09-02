@@ -4,6 +4,7 @@
 //= require bootstrap-multiselect
 //= require bootstrap-datepicker
 //= require moment
+//= require cocoon
 //= require daterangepicker
 //= require data-confirm-modal
 //= require dataTables/jquery.dataTables

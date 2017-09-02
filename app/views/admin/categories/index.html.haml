@@ -37,7 +37,7 @@
                       %strong
                         = link_to category.category_name, admin_category_path(category)
                     %td= category.category_code
-                    %td= image_tag Photo.find_by_imageable_id(category.id).image.url(:thumb) rescue nil
+                    %td= image_tag category.photos.last.image.url(:thumb) rescue nil
                     %td= category.created_at.strftime("%d %B %Y : %I.%M %p")
                     %td= category.status
                     %td
