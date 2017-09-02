@@ -1,0 +1,9 @@
+.nested-fields.col-md-4{:style => "border: 1px dashed #999; border-radius: 5px; padding: 20px;"}
+  .form-group
+    = link_to "View", @product.photos.last.image.url(:original, false), target: "_blank", :class=>"btn btn-primary" if @product.photos.last.present?
+    %br/
+    = f.file_field :image, :class => 'form-control'
+    %p.help-block Only PDF Format allowed max size 2 MB  
+  %br/
+  %center
+    = link_to_remove_association "Remove", f, :class=>"btn btn-danger"

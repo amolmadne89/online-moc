@@ -8,7 +8,11 @@
           / Menu header
           .menu-head
             %a.btn.btn-checkout{:href => product_detail_home_path(p.id)}
-              %img.menu-img.img-responsive.img-thumbnail{:alt => "", :src => "/assets/burger.jpg"}/
+              - if p.photos.present?
+                - img_path = p.photos.last.image.url
+              - else 
+                - img_path = "/assets/burger.jpg"
+              %img.menu-img.img-responsive.img-thumbnail.imgstyle{:alt => "", :src => img_path}/
             %h3.text-limit-head #{p.product_name}
             %p.small.text-limit-desc #{p.product_description}
             / %select.form-control.qty

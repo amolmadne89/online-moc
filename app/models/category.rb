@@ -3,7 +3,7 @@ class Category < ActiveRecord::Base
   has_many :products
   validates :category_name, :category_code, uniqueness: true
   validates :category_name, :category_code, presence: true
-  accepts_nested_attributes_for :photos
+  accepts_nested_attributes_for :photos, reject_if: :all_blank, allow_destroy: true
 
   def get_total_price(line_items)
   	total = 0
