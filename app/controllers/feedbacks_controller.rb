@@ -1,6 +1,6 @@
 class FeedbacksController < ApplicationController
 	def index
-		@feedback = Feedback.all
+		@feedbacks = Feedback.all
   end
 
   def new
@@ -10,7 +10,11 @@ class FeedbacksController < ApplicationController
   def create
   	@feedback = Feedback.new(feedback_params)
     if @feedback.save
-      redirect_to root_path
+      flash[:success] = "Thanks for your feedback"
+      redirect_to feedbacks_path
+    else
+      flash[:danger] = "Your feedback is not submitted successfully, please fulfill all the fields"
+      redirect_to feedbacks_path
     end
   end
 

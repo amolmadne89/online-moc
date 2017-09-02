@@ -26,9 +26,13 @@
         = link_to admin_orders_path do
           = fa_icon 'users'
           %span Manage Orders
+      %li
+        = link_to admin_reviews_path do
+          = fa_icon 'users'
+          %span Manage Reviews    
       %li.treeview
         %a{:href => "#"}
-          %i.fa.fa-list-alt
+          %i.fa.fa-edit
           %span Reports
           %span.pull-right-container
             %i.fa.fa-angle-left.pull-right
