@@ -8,6 +8,9 @@
           = current_user.first_name
           %br
           = current_user.role.name
+          %br
+          %small
+            = current_user.branch.name rescue nil
     %ul.sidebar-menu
       %li.header MENU
       %li

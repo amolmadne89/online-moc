@@ -7,6 +7,7 @@ Gemfile.lock
 dump.rdb
 # Ignore public assets in production
 public/assets/
+public/system/
 /coverage
 # Ignore application configuration
 /config/application.yml
@@ -20,4 +21,3 @@ dump.rdb
 node_modules
 npm-debug.log
 db/schema.rb
-public/

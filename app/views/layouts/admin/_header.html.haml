@@ -47,6 +47,8 @@
                   = current_user.role.name
                   %small
                     = current_user.email
+                  %small
+                    = current_user.branch.name rescue nil  
               %li.user-footer
                 .pull-left
                   %a.btn.btn-default.btn-flat{:href => "#{}"}
