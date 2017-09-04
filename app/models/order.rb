@@ -5,6 +5,9 @@ class Order < ActiveRecord::Base
   belongs_to  :cart
   belongs_to  :branch
   validate :set_branch, on: :create
+  scope :confirmed, -> { where("order_status=?", "confirmed") }
+  scope :pending, -> { where("order_status=?", "pending") }
+  scope :cancel, -> { where("order_status=?", "cancel") }
   ORDER_STATUSES = ['pending', 'confirmed', 'cancel']
 
   def update_shipping_address(cart, user)

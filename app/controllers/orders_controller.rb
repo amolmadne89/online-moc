@@ -25,7 +25,7 @@ class OrdersController < ApplicationController
       redirect_to place_order_order_path(@order)
     else
       redirect_to request.referer
-      flash.notice = "Your not in range" 
+      flash[:danger] = "Your Delivery Address Is Out Of The Range" 
     end
   end
 
@@ -42,6 +42,7 @@ class OrdersController < ApplicationController
     @order = Order.find(params["id"])
     if current_user.is_customer
       @order.update_column(:order_status, "pending")
+      current_user.update_column(:branch_id, @order.branch_id) if current_user.branch_id.blank?
       notification = Notification.create(notifiable_type: 'Order', notifiable_id: @order.id, is_checked: false, branch_id: @order.branch_id)
     else  
       @order.update_column(:order_status, "confirmed")

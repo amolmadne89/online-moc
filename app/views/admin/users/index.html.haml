@@ -27,8 +27,10 @@
                   %th Name
                   %th Email
                   %th Number
-                  %th Created Date
-                  %th Actions
+                  %th Confirmed Orders Count
+                  %th Pending Orders Count
+                  %th Cancel Orders Count
+                  / %th Actions
               %tbody
                 - @users.each do |user|
                   %tr
@@ -37,11 +39,13 @@
                         = link_to user.first_name, admin_user_path(user)
                     %td= user.email
                     %td= user.mobile_number
-                    %td= user.created_at.strftime("%d %B %Y : %I.%M %p")
-                    %td
-                      = link_to edit_admin_user_path(user), class: "btn btn-primary m-r-5",
-                        style: "padding: 0px; width: 20px;" do
-                        = fa_icon "pencil"
-                      = link_to admin_user_path(user), class: "btn btn-danger", method: :delete,
-                        data: {:confirm => "Would you like to permanently delete this user?", "commit-class" => "btn btn-success", "cancel-class" => "btn btn-danger"}, style: "padding: 0px; width: 20px;" do
-                        = fa_icon "trash-o"
+                    %td= user.orders.confirmed.count
+                    %td= user.orders.pending.count
+                    %td= user.orders.cancel.count
+                    / %td
+                    /   = link_to edit_admin_user_path(user), class: "btn btn-primary m-r-5",
+                    /     style: "padding: 0px; width: 20px;" do
+                    /     = fa_icon "pencil"
+                    /   = link_to admin_user_path(user), class: "btn btn-danger", method: :delete,
+                    /     data: {:confirm => "Would you like to permanently delete this user?", "commit-class" => "btn btn-success", "cancel-class" => "btn btn-danger"}, style: "padding: 0px; width: 20px;" do
+                    /     = fa_icon "trash-o"
