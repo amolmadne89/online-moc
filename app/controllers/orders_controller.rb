@@ -25,7 +25,7 @@ class OrdersController < ApplicationController
       redirect_to place_order_order_path(@order)
     else
       redirect_to request.referer
-      flash[:danger] = "Your Delivery Address Is Out Of The Range" 
+      flash.notice = "Your Delivery Address Is Out Of The Range"
     end
   end
 
