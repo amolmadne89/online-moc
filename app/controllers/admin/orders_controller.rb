@@ -47,6 +47,10 @@ class Admin::OrdersController < ApplicationController
     redirect_to request.referer
   end
 
+  def notification_count
+    @notifications = Notification.where(is_checked: false, branch_id: current_user.branch_id)
+  end 
+
   private
 
   def order_params

@@ -1,0 +1,9 @@
+%li.header You have #{notifications.count} notifications
+%li
+  %ul.menu
+    - notifications.each do |notification|
+      - order = Order.find(notification.notifiable_id)
+      %li
+        %a{:href => set_notification_nil_admin_order_path(notification.notifiable_id)}
+          %i.fa.fa-bell.text-aqua
+          You have new order from #{order.first_name}

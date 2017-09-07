@@ -1,0 +1,2 @@
+$("#notification_count").html(<%=@notifications.count%>)
+$('.dropdown-menu#notification_list').html("<%= j render :partial => 'latest_notification', :locals => { :notifications => @notifications }  %>");
