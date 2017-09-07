@@ -14,8 +14,8 @@
           %li.dropdown.notifications-menu
             %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
               %i.fa.fa-bell.text-aqua
-              %span.label.label-warning #{notifications.count}
-            %ul.dropdown-menu
+              %span.label.label-warning#notification_count #{notifications.count}
+            %ul.dropdown-menu#notification_list
               %li.header You have #{notifications.count} notifications
               %li
                 %ul.menu
@@ -57,3 +57,12 @@
                   = link_to destroy_user_session_path, class: "btn btn-default", method: :delete do
                     Logout
                     = fa_icon 'sign-out'
+:javascript
+  setInterval(function(){
+    $.ajax({
+      url: "/admin/orders/notification_count",
+      type: 'get',
+      dataType: 'script',
+      success: function() {}
+    });
+  }, 18000);

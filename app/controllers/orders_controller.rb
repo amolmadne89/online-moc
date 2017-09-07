@@ -44,11 +44,14 @@ class OrdersController < ApplicationController
       @order.update_column(:order_status, "pending")
       current_user.update_column(:branch_id, @order.branch_id) if current_user.branch_id.blank?
       notification = Notification.create(notifiable_type: 'Order', notifiable_id: @order.id, is_checked: false, branch_id: @order.branch_id)
+      print "\a"
     else  
       @order.update_column(:order_status, "confirmed")
     end
     session[:current_cart_id] = nil
   end
+
+  
 
   private
 

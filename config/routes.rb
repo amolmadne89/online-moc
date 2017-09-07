@@ -18,6 +18,9 @@ Rails.application.routes.draw do
       member do
         get :set_notification_nil
       end
+      collection do
+        get :notification_count
+      end 
     end
   end
   resources :contact_us
